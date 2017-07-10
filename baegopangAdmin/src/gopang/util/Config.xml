@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!-- DB설정(Connection) -->
+	<!-- <typeAliases> VO의 별칭 </typeAliases> 1) <properties> 2) <typeAliases> 
+		3) <transactionManager> 4) <mappers> -->
+	<!-- <typeAliases>vo객체의 별칭을 모아서 관리 <typeAlias type="my.dao.GuestBookVO" 
+		alias="GuestBook"/> </typeAliases> -->
+	<!-- DB연동 -->
+	<typeAliases>
+		<typeAlias type="gopang.bean.AdminBean" alias="admin" />
+		<typeAlias type="gopang.bean.BrandBean" alias="brand" />
+		<typeAlias type="gopang.bean.MasterBean" alias="master" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<!-- type(JDBC,JTA) = JDBC : 이 설정은 간단하게 JDBC 커밋과 롤백을 처리하기 위해 사용 커넥션 객체을 
+				DataSource로부터 가지고 와서 사용(일반적 사용) = MANAGED : 어떤 설정도 하지않는다. 대신에 컨테이너가 모든 트랜잭션을 
+				관리 -->
+			<dataSource type="POOLED">
+				<!-- type (SIMPLE,DBCP,JNDI) = UNPOOLED : 매번 요청시마다 커넥션을 열고 닫고하는 간단한 DataSource 
+					= POOLED : (DBCP) : 매번 연결하지 않고 Connection객체를 유지 = JNDI : 미리 설정되어 있는 Connection을 
+					사용 -->
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@babyseaninstance.c6levu9qrvwi.us-east-1.rds.amazonaws.com:1521:orcl" />
+				<property name="username" value="babysean" />
+				<property name="password" value="12341234" />
+			</dataSource>
+			<!-- Connection conn=ds.getConnection(); -->
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="gopang/xml/admin.xml" />
+		<mapper resource="gopang/xml/brand.xml" />
+		<mapper resource="gopang/xml/master.xml" />
+	</mappers>
+</configuration>
+
+
+
+
+
+
