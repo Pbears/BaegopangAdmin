@@ -1,6 +1,7 @@
 package gopang.dao;
 
 import java.io.Closeable;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,5 +38,31 @@ public class BrandDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	public int getTotalRow(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectOne("getTotalRow");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
+	public List<BrandBean> searchBrand(HashMap<String, Object> map){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("searchBrand", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
 }

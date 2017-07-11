@@ -29,7 +29,17 @@ td.headTd {
 	font-weight: bold;
 	font-size: medium;
 }
+table{
+	font-size: small;
+}
 </style>
+<script>
+$(function(){
+	$("button.masterDeleteBtn").click(function(){
+		alert("삭제!");
+	});
+});
+</script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
@@ -68,6 +78,7 @@ td.headTd {
 										<td class="headTd">생년월일</td>
 										<td class="headTd">음식점이름</td>
 										<td class="headTd">포인트</td>
+										<td class="headTd">상태</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -83,6 +94,7 @@ td.headTd {
 										<td><%=bean.getBirth()%></td>
 										<td><%=bean.getStorename()%></td>
 										<td><%=bean.getPoint()%></td>
+										<td><button type="button" class="btn btn-sm btn-danger masterDeleteBtn">삭제</button></td>
 									</tr>
 									<%
 										}

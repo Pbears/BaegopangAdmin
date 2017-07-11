@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gopang.xml.order">
+	<select id="selectAllOrder" resultType="order">
+		SELECT ORDERNUMBER, MEMBERID, MEMBERNAME, MEMBERTEL, MEMBERADDRESS, PRICE, ORDERINFO, MENUNAME, AMOUNT, STORENAME, STOREADDRESS, STORETEL, ORDERTIME, STATE, HIT
+		FROM FOODORDER
+	</select>
+</mapper>

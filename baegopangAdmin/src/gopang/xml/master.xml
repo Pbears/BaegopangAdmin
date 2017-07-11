@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectAllRequestSignUp" resultType="master">
-		SELECT ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME, POINT
+		SELECT ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME
 		FROM REQUESTSIGNUP
 	</select>
 </mapper>

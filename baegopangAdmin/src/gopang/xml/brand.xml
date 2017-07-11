@@ -7,6 +7,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT BRANDNO, BRANDNAME, PICTURE
 		FROM BRAND
 	</select>
+	<select id="getTotalRow" resultType="java.lang.Integer">
+		SELECT COUNT(BRANDNO)
+		FROM BRAND
+	</select>
+	<select id="searchBrand" parameterType="java.util.HashMap" resultType="brand">
+		SELECT RM, BRANDNO, BRANDNAME, PICTURE
+		FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY BRANDNO DESC) RM, BRANDNO, BRANDNAME, PICTURE
+		FROM BRAND)
+		WHERE RM BETWEEN #{start} AND #{end}
+		ORDER BY BRANDNO
+	</select>
 </mapper>
 
 

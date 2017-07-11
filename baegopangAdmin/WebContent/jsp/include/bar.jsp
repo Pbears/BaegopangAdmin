@@ -157,7 +157,22 @@
 							<i class="fa fa-fw fa-table"></i> Store
 						</a>
 					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-fw fa-table"></i> UnSelected Store
+						</a>
+					</li>
 				</ul>
+			</li>
+			<li>
+            	<a href="#">
+            		<i class="fa fa-fw fa-edit"></i> Notice
+            	</a>
+            </li>
+            <li>
+				<a href="#">
+					<i class="fa fa-fw fa-edit"></i> Question & Answer
+				</a>
 			</li>
 		</ul>
 	</div>

@@ -14,6 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="gopang.bean.MasterBean" alias="master" />
 		<typeAlias type="gopang.bean.MemberBean" alias="member" />
 		<typeAlias type="gopang.bean.MenuBean" alias="menu" />
+		<typeAlias type="gopang.bean.OrderBean" alias="order" />
+		<typeAlias type="gopang.bean.StoreBean" alias="store" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -26,12 +28,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 					= POOLED : (DBCP) : 매번 연결하지 않고 Connection객체를 유지 = JNDI : 미리 설정되어 있는 Connection을 
 					사용 -->
 				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
-				<!-- <property name="url" value="jdbc:oracle:thin:@babyseaninstance.c6levu9qrvwi.us-east-1.rds.amazonaws.com:1521:orcl" 
+				<property name="url" value="jdbc:oracle:thin:@babyseaninstance.c6levu9qrvwi.us-east-1.rds.amazonaws.com:1521:orcl" 
 					/> <property name="username" value="babysean" /> <property name="password" 
-					value="12341234" /> -->
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+					value="12341234" />
+				<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
 				<property name="username" value="hoon" />
-				<property name="password" value="1234" />
+				<property name="password" value="1234" /> -->
 			</dataSource>
 			<!-- Connection conn=ds.getConnection(); -->
 		</environment>
@@ -42,6 +44,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="gopang/xml/master.xml" />
 		<mapper resource="gopang/xml/member.xml" />
 		<mapper resource="gopang/xml/menu.xml" />
+		<mapper resource="gopang/xml/order.xml" />
+		<mapper resource="gopang/xml/store.xml" />
 	</mappers>
 </configuration>
 

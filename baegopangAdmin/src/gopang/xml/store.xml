@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gopang.xml.store">
+	<select id="selectAllStore" resultType="store">
+		SELECT STORENAME, BRANDNO, LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
+		FROM STORE
+	</select>
+</mapper>

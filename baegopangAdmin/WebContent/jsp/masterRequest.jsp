@@ -29,6 +29,9 @@ td.headTd {
 	font-weight: bold;
 	font-size: medium;
 }
+table{
+	font-size: small;
+}
 </style>
 <script>
 $(function(){
@@ -43,8 +46,8 @@ $(function(){
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
-		MasterDao brand = new MasterDao();
-		List<MasterBean> list = brand.selectAllRequestSignUp();
+		MasterDao master = new MasterDao();
+		List<MasterBean> list = master.selectAllRequestSignUp();
 	%>
 	<%=list %>
 	<div id="wrapper">

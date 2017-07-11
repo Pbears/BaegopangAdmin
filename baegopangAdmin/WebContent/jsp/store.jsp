@@ -1,3 +1,6 @@
+<%@page import="gopang.bean.StoreBean"%>
+<%@page import="java.util.List"%>
+<%@page import="gopang.dao.StoreDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,14 +12,40 @@
 <link href="/baegopangAdmin/css/sb-admin.css" rel="stylesheet">
 <link href="/baegopangAdmin/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/baegopangAdmin/css/plugins/morris.css" rel="stylesheet">
 <script src="/baegopangAdmin/js/jquery.js"></script>
 <script src="/baegopangAdmin/js/bootstrap.min.js"></script>
-<script src="/baegopangAdmin/js/plugins/morris/raphael.min.js"></script>
-<script src="/baegopangAdmin/js/plugins/morris/morris.min.js"></script>
-<script src="/baegopangAdmin/js/plugins/morris/morris-data.js"></script>
 </head>
+<style>
+tr {
+	height: 50px;
+}
+
+td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+td.headTd {
+	font-weight: bold;
+	font-size: medium;
+}
+table{
+	font-size: small;
+}
+</style>
+<script>
+$(function(){
+	$("button.storeDeleteBtn").click(function(){
+		alert("삭제!");
+	});
+});
+</script>
 <body>
+	<%
+		String id = (String) session.getAttribute("id");
+		StoreDao store = new StoreDao();
+		List<StoreBean> list = store.selectAllStore();
+	%>
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp"/>
 
@@ -41,55 +70,36 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
+                                        <td class="headTd" width="10%">음식점이름</td>
+                                        <td class="headTd" width="10%">브랜드번호</td>
+                                        <td class="headTd" width="10%">위치</td>
+                                        <td class="headTd" width="5%">평점</td>
+                                        <td class="headTd" width="10%">영업시간</td>
+                                        <td class="headTd" width="10%">전화번호</td>
+                                        <td class="headTd" width="10%">최저배달가격</td>
+                                        <td class="headTd" width="30%">정보</td>
+                                        <td class="headTd" width="5%">상태</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                	<%
+										for (int i = 0; i < list.size(); i++) {
+											StoreBean bean = list.get(i);
+									%>
                                     <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
+                                        <td><%=bean.getStorename() %></td>
+                                        <td><%=bean.getBrandno() %></td>
+                                        <td><%=bean.getLocation() %></td>
+                                        <td><%=bean.getGpa() %></td>
+                                        <td><%=bean.getHours() %></td>
+                                        <td><%=bean.getTel() %></td>
+                                        <td><%=bean.getMinprice() %></td>
+                                        <td><%=bean.getInfo() %></td>
+                                        <td><button type="button" class="btn btn-sm btn-danger storeDeleteBtn">삭제</button></td>
                                     </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
+                                    <%
+										}
+									%>
                                 </tbody>
                             </table>
                         </div>

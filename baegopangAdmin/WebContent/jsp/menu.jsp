@@ -29,7 +29,17 @@ td.headTd {
 	font-weight: bold;
 	font-size: medium;
 }
+table{
+	font-size: small;
+}
 </style>
+<script>
+$(function(){
+	$("button.menuDeleteBtn").click(function(){
+		alert("삭제!");
+	});
+});
+</script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
@@ -60,11 +70,12 @@ td.headTd {
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <td class="headTd">메뉴이름</td>
-										<td class="headTd">브랜드번호</td>
-										<td class="headTd">가격</td>
-										<td class="headTd">정보</td>
-										<td class="headTd">사진</td>
+                                        <td class="headTd" width="10%">메뉴이름</td>
+										<td class="headTd" width="10%">브랜드번호</td>
+										<td class="headTd" width="5%">가격</td>
+										<td class="headTd" width="60%">정보</td>
+										<td class="headTd" width="10%">사진</td>
+										<td class="headTd" width="5%">상태</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,7 +88,8 @@ td.headTd {
 										<td><%=bean.getBrandno()%></td>
 										<td><%=bean.getPrice()%></td>
 										<td><%=bean.getInfo()%></td>
-										<td><%=bean.getPicture()%></td>
+										<td><img src="/baegopangAdmin<%=bean.getPicture()%>" width="50" height="50"></td>
+										<td><button type="button" class="btn btn-sm btn-danger menuDeleteBtn">삭제</button></td>
 									</tr>
 									<%
 										}
