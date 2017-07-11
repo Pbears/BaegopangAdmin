@@ -12,12 +12,8 @@
 <link href="/baegopangAdmin/css/sb-admin.css" rel="stylesheet">
 <link href="/baegopangAdmin/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/baegopangAdmin/css/plugins/morris.css" rel="stylesheet">
 <script src="/baegopangAdmin/js/jquery.js"></script>
 <script src="/baegopangAdmin/js/bootstrap.min.js"></script>
-<script src="/baegopangAdmin/js/plugins/morris/raphael.min.js"></script>
-<script src="/baegopangAdmin/js/plugins/morris/morris.min.js"></script>
-<script src="/baegopangAdmin/js/plugins/morris/morris-data.js"></script>
 </head>
 <style>
 tr {
@@ -37,8 +33,8 @@ td.headTd {
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
-		MasterDao brand = new MasterDao();
-		List<MasterBean> list = brand.selectAllMaster();
+		MasterDao master = new MasterDao();
+		List<MasterBean> list = master.selectAllMaster();
 	%>
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp" />
@@ -80,13 +76,13 @@ td.headTd {
 											MasterBean bean = list.get(i);
 									%>
 									<tr>
-										<td><%=bean.getId() %></td>
-										<td><%=bean.getName() %></td>
-										<td><%=bean.getAddress() %></td>
-										<td><%=bean.getTel() %></td>
-										<td><%=bean.getBirth() %></td>
-										<td><%=bean.getStorename() %></td>
-										<td><%=bean.getPoint() %></td>
+										<td><%=bean.getId()%></td>
+										<td><%=bean.getName()%></td>
+										<td><%=bean.getAddress()%></td>
+										<td><%=bean.getTel()%></td>
+										<td><%=bean.getBirth()%></td>
+										<td><%=bean.getStorename()%></td>
+										<td><%=bean.getPoint()%></td>
 									</tr>
 									<%
 										}

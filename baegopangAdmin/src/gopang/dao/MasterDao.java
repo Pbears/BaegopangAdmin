@@ -38,4 +38,17 @@ public class MasterDao {
 		}
 	}
 
+	public List<MasterBean> selectAllRequestSignUp() {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("selectAllRequestSignUp");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+
 }
