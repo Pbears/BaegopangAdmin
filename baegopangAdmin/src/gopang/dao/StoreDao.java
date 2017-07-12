@@ -25,6 +25,19 @@ public class StoreDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<StoreBean> selectAllUnSelectedStore() {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("selectAllUnSelectedStore");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 	public List<StoreBean> selectAllStore() {
 		SqlSession sqlSession = null;

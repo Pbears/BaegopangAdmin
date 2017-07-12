@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>배고팡 관리자</title>
 <link href="/baegopangAdmin/css/bootstrap.min.css" rel="stylesheet">
 <link href="/baegopangAdmin/css/sb-admin.css" rel="stylesheet">
 <link href="/baegopangAdmin/font-awesome/css/font-awesome.min.css"

@@ -158,7 +158,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="/baegopangAdmin/jsp/unSelectedStore.jsp">
 							<i class="fa fa-fw fa-table"></i> UnSelected Store
 						</a>
 					</li>

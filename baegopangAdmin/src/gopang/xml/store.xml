@@ -4,7 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gopang.xml.store">
 	<select id="selectAllStore" resultType="store">
-		SELECT STORENAME, BRANDNO, LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
+		SELECT STORENAME, BRANDNO, LOCATION, GPA, HOURS, TEL, MINPRICE, NVL(INFO,'-') INFO
 		FROM STORE
+	</select>
+	
+	<select id="selectAllUnSelectedStore" resultType="store">
+		SELECT STORENAME, BRANDNO, LOCATION, GPA, HOURS, TEL, MINPRICE, NVL(INFO,'-') INFO
+		FROM UNSELECTEDSTORE
 	</select>
 </mapper>

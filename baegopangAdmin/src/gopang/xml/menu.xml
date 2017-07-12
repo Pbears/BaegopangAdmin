@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gopang.xml.menu">
 	<select id="selectAllMenu" resultType="menu">
-		SELECT MENUNAME, BRANDNO, PRICE, INFO, PICTURE
+		SELECT MENUNAME, BRANDNO, PRICE, NVL(INFO,'-') INFO, PICTURE
 		FROM MENU
 	</select>
 </mapper>

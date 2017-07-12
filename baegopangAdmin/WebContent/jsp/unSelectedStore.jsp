@@ -32,10 +32,17 @@ td.headTd {
 table{
 	font-size: small;
 }
+div .storeInsertDiv{
+	width: 100%;
+	text-align: right;
+}
 </style>
 <script>
 $(function(){
-	$("button.storeDeleteBtn").click(function(){
+	$("button#storeInsertBtn").click(function(){
+		alert("추가!");
+	});
+	$("button.unSelectedStoreDeleteBtn").click(function(){
 		alert("삭제!");
 	});
 });
@@ -44,7 +51,7 @@ $(function(){
 	<%
 		String id = (String) session.getAttribute("id");
 		StoreDao store = new StoreDao();
-		List<StoreBean> list = store.selectAllStore();
+		List<StoreBean> list = store.selectAllUnSelectedStore();
 	%>
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp"/>
@@ -57,13 +64,16 @@ $(function(){
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Store <small>환영합니다 관리자님</small>
+							UnSelected Store <small>환영합니다 관리자님</small>
 						</h1>
 					</div>
 				</div>
 				<!-- /.row -->
 				
 				<div class="row">
+					<div class="col-lg-12 storeInsertDiv">
+						<button type="button" class="btn btn-sm btn-primary" id="storeInsertBtn">추가</button>
+					</div>
                     <div class="col-lg-12">
                         <h2>Store List</h2>
                         <div class="table-responsive">
@@ -95,7 +105,7 @@ $(function(){
                                         <td><%=bean.getTel() %></td>
                                         <td><%=bean.getMinprice() %></td>
                                         <td><%=bean.getInfo() %></td>
-                                        <td><button type="button" class="btn btn-sm btn-danger storeDeleteBtn">삭제</button></td>
+                                        <td><button type="button" class="btn btn-sm btn-danger unSelectedStoreDeleteBtn">삭제</button></td>
                                     </tr>
                                     <%
 										}
