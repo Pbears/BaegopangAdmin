@@ -7,10 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT BRANDNO, BRANDNAME, PICTURE
 		FROM BRAND
 	</select>
-	<select id="getTotalRow" resultType="java.lang.Integer">
+	
+	<select id="getBrandTotalRow" resultType="java.lang.Integer">
 		SELECT COUNT(BRANDNO)
 		FROM BRAND
 	</select>
+	
 	<select id="searchBrand" parameterType="java.util.HashMap" resultType="brand">
 		SELECT RM, BRANDNO, BRANDNAME, PICTURE
 		FROM

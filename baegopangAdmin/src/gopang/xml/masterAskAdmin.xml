@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gopang.xml.notice">
+	<select id="selectAllMasterAskAdmin" resultType="notice">
+		SELECT NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
+		FROM MASTERASKADMIN
+	</select>
+	
+	<select id="getMasterAskAdminTotalRow" resultType="java.lang.Integer">
+		SELECT COUNT(NO)
+		FROM MASTERASKADMIN
+	</select>
+	
+	<select id="searchMasterAskAdmin" parameterType="java.util.HashMap" resultType="masterAskAdmin">
+		SELECT RM, NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
+		FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RM, NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
+		FROM MASTERASKADMIN)
+		WHERE RM BETWEEN #{start} AND #{end}
+		ORDER BY NO
+	</select>
+</mapper>

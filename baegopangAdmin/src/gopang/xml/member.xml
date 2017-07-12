@@ -7,6 +7,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT ID, PW, NAME, ADDRESS, TEL, GENDER, BIRTH, PANG
 		FROM MEMBER
 	</select>
+	
+	<select id="getMemberTotalRow" resultType="java.lang.Integer">
+		SELECT COUNT(ID)
+		FROM MEMBER
+	</select>
+	
+	<select id="searchMember" parameterType="java.util.HashMap" resultType="member">
+		SELECT RM, ID, PW, NAME, ADDRESS, TEL, GENDER, BIRTH, PANG
+		FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY ID DESC) RM, ID, PW, NAME, ADDRESS, TEL, GENDER, BIRTH, PANG
+		FROM MEMBER)
+		WHERE RM BETWEEN #{start} AND #{end}
+		ORDER BY ID
+	</select>
+	
 </mapper>
 
 

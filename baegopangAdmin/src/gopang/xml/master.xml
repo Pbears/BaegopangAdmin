@@ -3,14 +3,41 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gopang.xml.master">
-
 	<select id="selectAllMaster" resultType="master">
 		SELECT ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME, POINT
 		FROM MASTER
 	</select>
 	
 	<select id="selectAllRequestSignUp" resultType="master">
-		SELECT ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME
+		SELECT ID, PW, NAME, ADDRESS, TEL, BIRTH, NVL(STORENAME,'-') STORENAME
+		FROM REQUESTSIGNUP
+	</select>
+	
+	<select id="searchMaster" parameterType="java.util.HashMap" resultType="master">
+		SELECT RM, ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME, POINT
+		FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY ID DESC) RM, ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME, POINT
+		FROM MASTER)
+		WHERE RM BETWEEN #{start} AND #{end}
+		ORDER BY ID
+	</select>
+	
+	<select id="searchRequestMaster" parameterType="java.util.HashMap" resultType="master">
+		SELECT RM, ID, PW, NAME, ADDRESS, TEL, BIRTH, NVL(STORENAME,'-') STORENAME, POINT
+		FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY ID DESC) RM, ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME, POINT
+		FROM REQUESTSIGNUP)
+		WHERE RM BETWEEN #{start} AND #{end}
+		ORDER BY ID
+	</select>
+	
+	<select id="getMasterTotalRow" resultType="java.lang.Integer">
+		SELECT COUNT(ID)
+		FROM MASTER
+	</select>
+	
+	<select id="getRequestMasterTotalRow" resultType="java.lang.Integer">
+		SELECT COUNT(ID)
 		FROM REQUESTSIGNUP
 	</select>
 </mapper>

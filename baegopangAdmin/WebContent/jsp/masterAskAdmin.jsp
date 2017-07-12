@@ -1,3 +1,7 @@
+<%@page import="gopang.bean.masterAskAdminBean"%>
+<%@page import="gopang.dao.MasterAskAdminDao"%>
+<%@page import="gopang.bean.NoticeBean"%>
+<%@page import="gopang.dao.NoticeDao"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.util.List"%>
@@ -30,32 +34,47 @@ td.headTd {
 	font-weight: bold;
 	font-size: medium;
 }
-table{
+
+table {
 	font-size: small;
 }
-div .storeInsertDiv{
+
+div.storeInsertDiv {
 	width: 100%;
 	text-align: right;
 }
+div.answerDiv {
+	width: 100%;
+}
+button.answerInsertBtn{
+	width: 100px;
+	height: 70px;
+}
+button.questionDeleteBtn{
+	width: 100px;
+}
+textarea{
+	resize: none;
+}
 </style>
 <script>
-$(function(){
-	$("button#storeInsertBtn").click(function(){
-		alert("추가!");
+	$(function() {
+		$("button.answerInsertBtn").click(function() {
+			alert("추가!");
+		});
+		$("button.questionDeleteBtn").click(function() {
+			alert("삭제!");
+		});
 	});
-	$("button.unSelectedStoreDeleteBtn").click(function(){
-		alert("삭제!");
-	});
-});
 </script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
-		StoreDao store = new StoreDao();
-		List<StoreBean> list = null;
+		List<masterAskAdminBean> list = null;
+		MasterAskAdminDao maska = new MasterAskAdminDao();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int pageScale = 8;
-		int totalRow = store.getUnSelectedStoreTotalRow();
+		int totalRow = maska.getMasterAskAdminTotalRow();
 		int currentPage = 0;
 		try {
 			currentPage = Integer.parseInt(request.getParameter("page"));
@@ -75,10 +94,10 @@ $(function(){
 		map.put("start", start);
 		map.put("end", end);
 
-		list = store.searchUnSelectedStore(map);
+		list = maska.searchMasterAskAdmin(map);
 	%>
 	<div id="wrapper">
-		<jsp:include page="/jsp/include/bar.jsp"/>
+		<jsp:include page="/jsp/include/bar.jsp" />
 
 		<div id="page-wrapper">
 
@@ -88,58 +107,67 @@ $(function(){
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							UnSelected Store <small>환영합니다 관리자님</small>
+							Question & Answer <small>환영합니다 <%=id %></small>
 						</h1>
 					</div>
 				</div>
 				<!-- /.row -->
-				
+
 				<div class="row">
-					<div class="col-lg-12 storeInsertDiv">
-						<button type="button" class="btn btn-sm btn-primary" id="storeInsertBtn">추가</button>
-					</div>
-                    <div class="col-lg-12">
-                        <h2>Store List</h2>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <td class="headTd" width="10%">음식점이름</td>
-                                        <td class="headTd" width="10%">브랜드번호</td>
-                                        <td class="headTd" width="10%">위치</td>
-                                        <td class="headTd" width="5%">평점</td>
-                                        <td class="headTd" width="10%">영업시간</td>
-                                        <td class="headTd" width="10%">전화번호</td>
-                                        <td class="headTd" width="10%">최저배달가격</td>
-                                        <td class="headTd" width="30%">정보</td>
-                                        <td class="headTd" width="5%">상태</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                	<%
+					<div class="col-lg-12">
+						<h2>Question List</h2>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<td class="headTd" width="10%">번호</td>
+										<td class="headTd" width="10%">질문자</td>
+										<td class="headTd" width="20%">제목</td>
+										<td class="headTd" width="30%">내용</td>
+										<td class="headTd" width="10%">응답자</td>
+										<td class="headTd" width="10%">등록일</td>
+										<td class="headTd" width="10%">상태</td>
+									</tr>
+								</thead>
+								<tbody>
+									<%
 										for (int i = 0; i < list.size(); i++) {
-											StoreBean bean = list.get(i);
+											masterAskAdminBean bean = list.get(i);
 									%>
-                                    <tr>
-                                        <td><%=bean.getStorename() %></td>
-                                        <td><%=bean.getBrandno() %></td>
-                                        <td><%=bean.getLocation() %></td>
-                                        <td><%=bean.getGpa() %></td>
-                                        <td><%=bean.getHours() %></td>
-                                        <td><%=bean.getTel() %></td>
-                                        <td><%=bean.getMinprice() %></td>
-                                        <td><%=bean.getInfo() %></td>
-                                        <td><button type="button" class="btn btn-sm btn-danger unSelectedStoreDeleteBtn">삭제</button></td>
-                                    </tr>
-                                    <%
+									<div>
+										<tr class="QeustionTr" id="<%=bean.getNo() %>">
+											<td><%=bean.getNo() %></td>
+											<td><%=bean.getMasterId() %></td>
+											<td><%=bean.getTitle() %></td>
+											<td><%=bean.getMasterInfo() %></td>
+											<td><%=bean.getAdminId() %></td>
+											<td><%=bean.getRegdate() %></td>
+											<td><button type="button" class="btn btn-sm btn-danger questionDeleteBtn">삭제</button></td>
+										</tr>
+										<tr class="answerTr" id="<%=bean.getNo() %>">
+											<td colspan="7">
+												<div class="answerDiv col-lg-12">
+													<div class="col-lg-11">
+														<div class="form-group">
+						                                <textarea class="form-control answerTextArea" rows="3"></textarea>
+						                            </div>
+													</div>
+													<div class="col-lg-1">
+														<button type="button" class="btn btn-sm btn-primary answerInsertBtn">답변</button>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</div>
+									<%
 										}
 									%>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- 페이지이동페이징 -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+					 <!-- 페이지이동페이징 -->
 					<div class="col-lg-12">
 						<div id="pagerDiv"
 							style="width: 100%; margin: 0 auto; text-align: center;">
@@ -150,7 +178,7 @@ $(function(){
 											if (currentBlock > 1) {
 												if (currentPage != startPage) {
 										%>
-												<a href="/baegopangAdmin/jsp/unSelectedStore.jsp?page=<%=startPage - 1%>">
+												<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=startPage - 1%>">
 													Previous
 												</a>
 										<%
@@ -162,7 +190,7 @@ $(function(){
 											}else {
 												if (currentPage != startPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/unSelectedStore.jsp?page=<%=currentPage - 1%>">
+													<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=currentPage - 1%>">
 														Previous
 													</a>
 										<%
@@ -186,7 +214,7 @@ $(function(){
 							 					} else {
 							 			%> 
 							 					<li>
-							 						<a href="/baegopangAdmin/jsp/unSelectedStore.jsp?page=<%=i%>">
+							 						<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=i%>">
 							 							<%=i %>
 													</a>
 												</li>
@@ -200,7 +228,7 @@ $(function(){
 											if (totalPage > endPage) {
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/unSelectedStore.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -212,7 +240,7 @@ $(function(){
 											}else{
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/unSelectedStore.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -228,14 +256,17 @@ $(function(){
 							</ul>
 						</div>
 					</div>
+					
+					
+					
+					
+				</div>
+				<!-- /.container-fluid -->
 
 			</div>
-			<!-- /.container-fluid -->
+			<!-- /#page-wrapper -->
 
 		</div>
-		<!-- /#page-wrapper -->
-
-	</div>
-	<!-- /#wrapper -->
+		<!-- /#wrapper -->
 </body>
 </html>

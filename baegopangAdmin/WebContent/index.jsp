@@ -24,6 +24,7 @@
 	-webkit-justify-content: center;
 	background: black;
 }
+
 div#innerDiv{
 	background-color: #d2d2d2;
 	width: 100%;

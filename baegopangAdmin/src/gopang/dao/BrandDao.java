@@ -39,11 +39,11 @@ public class BrandDao {
 		}
 	}
 	
-	public int getTotalRow(){
+	public int getBrandTotalRow(){
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectOne("getTotalRow");
+			return sqlSession.selectOne("getBrandTotalRow");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;

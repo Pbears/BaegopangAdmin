@@ -8,13 +8,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import gopang.bean.MenuBean;
+import gopang.bean.NoticeBean;
 import gopang.bean.OrderBean;
+import gopang.bean.StoreBean;
+import gopang.bean.masterAskAdminBean;
 import gopang.util.SqlSessionFactoryManager;
 
-public class OrderDao {
+public class MasterAskAdminDao {
 	private SqlSessionFactory sqlSessionFactory;
 
-	public OrderDao() {
+	public MasterAskAdminDao() {
 		sqlSessionFactory = SqlSessionFactoryManager.getSqlSessionFactory();
 	}
 
@@ -27,11 +30,11 @@ public class OrderDao {
 		}
 	}
 
-	public List<OrderBean> selectAllOrder() {
+	public List<masterAskAdminBean> selectAllMasterAskAdmin() {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectList("selectAllOrder");
+			return sqlSession.selectList("selectAllMasterAskAdmin");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -40,11 +43,11 @@ public class OrderDao {
 		}
 	}
 	
-	public int getOrderTotalRow() {
+	public int getMasterAskAdminTotalRow() {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectOne("getOrderTotalRow");
+			return sqlSession.selectOne("getMasterAskAdminTotalRow");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -53,11 +56,11 @@ public class OrderDao {
 		}
 	}	
 	
-	public List<OrderBean> searchOrder(HashMap<String, Object> map) {
+	public List<masterAskAdminBean> searchMasterAskAdmin(HashMap<String, Object> map) {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectList("searchOrder", map);
+			return sqlSession.selectList("searchMasterAskAdmin", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -65,5 +68,6 @@ public class OrderDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+
 
 }

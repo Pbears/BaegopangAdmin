@@ -54,8 +54,8 @@ $(function(){
 		List<BrandBean> list = null;
 		BrandDao brand = new BrandDao();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int pageScale = 10;
-		int totalRow = brand.getTotalRow();
+		int pageScale = 8;
+		int totalRow = brand.getBrandTotalRow();
 
 		int currentPage = 0;
 		try {

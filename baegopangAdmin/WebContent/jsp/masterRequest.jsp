@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="gopang.bean.MasterBean"%>
 <%@page import="java.util.List"%>
 <%@page import="gopang.dao.MasterDao"%>
@@ -46,8 +47,32 @@ $(function(){
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
+		List<MasterBean> list = null;
 		MasterDao master = new MasterDao();
-		List<MasterBean> list = master.selectAllRequestSignUp();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int pageScale = 8;
+		int totalRow = master.getRequestMasterTotalRow();
+
+		int currentPage = 0;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		} catch (Exception e) {
+			currentPage = 1;
+		}
+		int totalPage = totalRow % pageScale == 0 ? totalRow / pageScale : totalRow / pageScale + 1;
+		if (totalRow == 0)
+			totalPage = 1;
+		int start = 1 + (currentPage - 1) * pageScale;
+		int end = pageScale + (currentPage - 1) * pageScale;
+		int currentBlock = currentPage % pageScale == 0 ? (currentPage / pageScale) : (currentPage / pageScale + 1);
+		int startPage = 1 + (currentBlock - 1) * pageScale;
+		int endPage = pageScale + (currentBlock - 1) * pageScale;
+		if (totalPage <= endPage)
+			endPage = totalPage;
+		map.put("start", start);
+		map.put("end", end);
+
+		list = master.searchRequestMaster(map);
 	%>
 	<%=list %>
 	<div id="wrapper">
@@ -75,14 +100,14 @@ $(function(){
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<td class="headTd">아이디</td>
-										<td class="headTd">이름</td>
-										<td class="headTd">주소</td>
-										<td class="headTd">전화번호</td>
-										<td class="headTd">생년월일</td>
-										<td class="headTd">음식점이름</td>
-										<td class="headTd">포인트</td>
-										<td class="headTd">행동</td>
+										<td class="headTd" width="10%">아이디</td>
+										<td class="headTd" width="10%">이름</td>
+										<td class="headTd" width="40%">주소</td>
+										<td class="headTd" width="10%">전화번호</td>
+										<td class="headTd" width="10%">생년월일</td>
+										<td class="headTd" width="7%">음식점이름</td>
+										<td class="headTd" width="5%">포인트</td>
+										<td class="headTd" width="8%">상태</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -110,6 +135,99 @@ $(function(){
 							</table>
 						</div>
 					</div>
+
+				<!-- 페이지이동페이징 -->
+					<div class="col-lg-12">
+						<div id="pagerDiv"
+							style="width: 100%; margin: 0 auto; text-align: center;">
+							<ul class="pagination">
+								<ul class="pager">
+									<li>
+										<%
+											if (currentBlock > 1) {
+												if (currentPage != startPage) {
+										%>
+												<a href="/baegopangAdmin/jsp/masterRequest.jsp?page=<%=startPage - 1%>">
+													Previous
+												</a>
+										<%
+												}else{
+										%>
+													<a href="#">Previous</a>
+										<% 
+												}
+											}else {
+												if (currentPage != startPage) {
+										%>
+													<a href="/baegopangAdmin/jsp/masterRequest.jsp?page=<%=currentPage - 1%>">
+														Previous
+													</a>
+										<%
+												}else{
+										%>
+													<a href="#">Previous</a>
+										<%
+												}
+											}
+										%>
+									</li>
+									<span> 
+										<%
+							 				for (int i = startPage; i <= endPage; i++) {
+							 					if (i == currentPage) {
+							 			%> 
+							 					<li>
+							 						<a href="#"><strong><%=i %></strong></a>
+							 					</li> 
+							 			<%
+							 					} else {
+							 			%> 
+							 					<li>
+							 						<a href="/baegopangAdmin/jsp/masterRequest.jsp?page=<%=i%>">
+							 							<%=i %>
+													</a>
+												</li>
+										<%
+							 					}
+							 				}
+							 			%>
+									</span>
+									<li>
+										<%
+											if (totalPage > endPage) {
+												if (currentPage != endPage) {
+										%>
+													<a href="/baegopangAdmin/jsp/masterRequest.jsp?page=<%=currentPage + 1%>">
+														Next
+													</a>
+										<%
+												} else {
+										%>
+													<a href="#">Next</a>
+										<%
+												}
+											}else{
+												if (currentPage != endPage) {
+										%>
+													<a href="/baegopangAdmin/jsp/masterRequest.jsp?page=<%=currentPage + 1%>">
+														Next
+													</a>
+										<%
+												}else{
+										%>
+													<a href="#">Next</a>
+										<%
+												}
+											}
+										%>
+									</li>
+								</ul>
+							</ul>
+						</div>
+					</div>
+
+
+
 
 				</div>
 				<!-- /.container-fluid -->

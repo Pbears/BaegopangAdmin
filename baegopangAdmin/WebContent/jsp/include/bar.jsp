@@ -165,12 +165,12 @@
 				</ul>
 			</li>
 			<li>
-            	<a href="#">
+            	<a href="/baegopangAdmin/jsp/notice.jsp">
             		<i class="fa fa-fw fa-edit"></i> Notice
             	</a>
             </li>
             <li>
-				<a href="#">
+				<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp">
 					<i class="fa fa-fw fa-edit"></i> Question & Answer
 				</a>
 			</li>

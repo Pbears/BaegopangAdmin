@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="gopang.bean.MenuBean" alias="menu" />
 		<typeAlias type="gopang.bean.OrderBean" alias="order" />
 		<typeAlias type="gopang.bean.StoreBean" alias="store" />
+		<typeAlias type="gopang.bean.NoticeBean" alias="notice" />
+		<typeAlias type="gopang.bean.masterAskAdminBean" alias="masterAskAdmin" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -47,6 +49,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="gopang/xml/menu.xml" />
 		<mapper resource="gopang/xml/order.xml" />
 		<mapper resource="gopang/xml/store.xml" />
+		<mapper resource="gopang/xml/notice.xml" />
+		<mapper resource="gopang/xml/masterAskAdmin.xml" />
 	</mappers>
 </configuration>
 

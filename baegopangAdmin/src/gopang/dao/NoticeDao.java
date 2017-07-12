@@ -8,13 +8,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import gopang.bean.MenuBean;
+import gopang.bean.NoticeBean;
 import gopang.bean.OrderBean;
+import gopang.bean.StoreBean;
 import gopang.util.SqlSessionFactoryManager;
 
-public class OrderDao {
+public class NoticeDao {
 	private SqlSessionFactory sqlSessionFactory;
 
-	public OrderDao() {
+	public NoticeDao() {
 		sqlSessionFactory = SqlSessionFactoryManager.getSqlSessionFactory();
 	}
 
@@ -27,11 +29,11 @@ public class OrderDao {
 		}
 	}
 
-	public List<OrderBean> selectAllOrder() {
+	public List<NoticeBean> selectAllNotice() {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectList("selectAllOrder");
+			return sqlSession.selectList("selectAllNotice");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -40,11 +42,11 @@ public class OrderDao {
 		}
 	}
 	
-	public int getOrderTotalRow() {
+	public int getNoticeTotalRow() {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectOne("getOrderTotalRow");
+			return sqlSession.selectOne("getNoticeTotalRow");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -53,11 +55,11 @@ public class OrderDao {
 		}
 	}	
 	
-	public List<OrderBean> searchOrder(HashMap<String, Object> map) {
+	public List<NoticeBean> searchNotice(HashMap<String, Object> map) {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectList("searchOrder", map);
+			return sqlSession.selectList("searchNotice", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -65,5 +67,6 @@ public class OrderDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+
 
 }

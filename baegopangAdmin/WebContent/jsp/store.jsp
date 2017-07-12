@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.util.List"%>
 <%@page import="gopang.dao.StoreDao"%>
@@ -32,6 +33,18 @@ td.headTd {
 table{
 	font-size: small;
 }
+div.divInfo {
+    white-space: nowrap; 
+    width: 45em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+div.divLocation {
+	white-space: nowrap; 
+    width: 15em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 </style>
 <script>
 $(function(){
@@ -43,8 +56,31 @@ $(function(){
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
+		List<StoreBean> list = null;
 		StoreDao store = new StoreDao();
-		List<StoreBean> list = store.selectAllStore();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int pageScale = 8;
+		int totalRow = store.getStoreTotalRow();
+		int currentPage = 0;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		} catch (Exception e) {
+			currentPage = 1;
+		}
+		int totalPage = totalRow % pageScale == 0 ? totalRow / pageScale : totalRow / pageScale + 1;
+		if (totalRow == 0)
+			totalPage = 1;
+		int start = 1 + (currentPage - 1) * pageScale;
+		int end = pageScale + (currentPage - 1) * pageScale;
+		int currentBlock = currentPage % pageScale == 0 ? (currentPage / pageScale) : (currentPage / pageScale + 1);
+		int startPage = 1 + (currentBlock - 1) * pageScale;
+		int endPage = pageScale + (currentBlock - 1) * pageScale;
+		if (totalPage <= endPage)
+			endPage = totalPage;
+		map.put("start", start);
+		map.put("end", end);
+
+		list = store.searchStore(map);
 	%>
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp"/>
@@ -89,12 +125,12 @@ $(function(){
                                     <tr>
                                         <td><%=bean.getStorename() %></td>
                                         <td><%=bean.getBrandno() %></td>
-                                        <td><%=bean.getLocation() %></td>
+                                        <td><div class="divLocation"><%=bean.getLocation() %></div></td>
                                         <td><%=bean.getGpa() %></td>
                                         <td><%=bean.getHours() %></td>
                                         <td><%=bean.getTel() %></td>
                                         <td><%=bean.getMinprice() %></td>
-                                        <td><%=bean.getInfo() %></td>
+                                        <td><div class="divInfo"><%=bean.getInfo() %></div></td>
                                         <td><button type="button" class="btn btn-sm btn-danger storeDeleteBtn">삭제</button></td>
                                     </tr>
                                     <%
@@ -104,6 +140,96 @@ $(function(){
                             </table>
                         </div>
                     </div>
+                    
+                    <!-- 페이지이동페이징 -->
+					<div class="col-lg-12">
+						<div id="pagerDiv"
+							style="width: 100%; margin: 0 auto; text-align: center;">
+							<ul class="pagination">
+								<ul class="pager">
+									<li>
+										<%
+											if (currentBlock > 1) {
+												if (currentPage != startPage) {
+										%>
+												<a href="/baegopangAdmin/jsp/store.jsp?page=<%=startPage - 1%>">
+													Previous
+												</a>
+										<%
+												}else{
+										%>
+													<a href="#">Previous</a>
+										<% 
+												}
+											}else {
+												if (currentPage != startPage) {
+										%>
+													<a href="/baegopangAdmin/jsp/store.jsp?page=<%=currentPage - 1%>">
+														Previous
+													</a>
+										<%
+												}else{
+										%>
+													<a href="#">Previous</a>
+										<%
+												}
+											}
+										%>
+									</li>
+									<span> 
+										<%
+							 				for (int i = startPage; i <= endPage; i++) {
+							 					if (i == currentPage) {
+							 			%> 
+							 					<li>
+							 						<a href="#"><strong><%=i %></strong></a>
+							 					</li> 
+							 			<%
+							 					} else {
+							 			%> 
+							 					<li>
+							 						<a href="/baegopangAdmin/jsp/store.jsp?page=<%=i%>">
+							 							<%=i %>
+													</a>
+												</li>
+										<%
+							 					}
+							 				}
+							 			%>
+									</span>
+									<li>
+										<%
+											if (totalPage > endPage) {
+												if (currentPage != endPage) {
+										%>
+													<a href="/baegopangAdmin/jsp/store.jsp?page=<%=currentPage + 1%>">
+														Next
+													</a>
+										<%
+												} else {
+										%>
+													<a href="#">Next</a>
+										<%
+												}
+											}else{
+												if (currentPage != endPage) {
+										%>
+													<a href="/baegopangAdmin/jsp/store.jsp?page=<%=currentPage + 1%>">
+														Next
+													</a>
+										<%
+												}else{
+										%>
+													<a href="#">Next</a>
+										<%
+												}
+											}
+										%>
+									</li>
+								</ul>
+							</ul>
+						</div>
+					</div>
 
 			</div>
 			<!-- /.container-fluid -->
