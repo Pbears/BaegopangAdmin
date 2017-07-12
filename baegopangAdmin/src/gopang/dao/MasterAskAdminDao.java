@@ -69,5 +69,18 @@ public class MasterAskAdminDao {
 		}
 	}
 
+	public void insertAnswer(HashMap<String, String> map){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.update("insertAnswer", map);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 }

@@ -1,3 +1,4 @@
+<%@page import="gopang.dao.StoreDao"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="gopang.bean.MasterBean"%>
 <%@page import="java.util.List"%>
@@ -36,11 +37,15 @@ table{
 </style>
 <script>
 $(function(){
+	$("tr.requestTr").hide();
 	$("button.btn-primary").click(function(){
 		alert('승인');
 	});
 	$("button.btn-danger").click(function(){
-		alert('거절');	
+		alert($(this).attr("id"));
+	});
+	$("tr.ttr").click(function(){
+		$(this).next().toggle(500);
 	});
 })
 </script>
@@ -49,6 +54,8 @@ $(function(){
 		String id = (String) session.getAttribute("id");
 		List<MasterBean> list = null;
 		MasterDao master = new MasterDao();
+		StoreDao store = new StoreDao();
+		List<String> unSelectedStore = store.selectAllUnSelectedStoreName();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int pageScale = 8;
 		int totalRow = master.getRequestMasterTotalRow();
@@ -74,7 +81,6 @@ $(function(){
 
 		list = master.searchRequestMaster(map);
 	%>
-	<%=list %>
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp" />
 
@@ -105,9 +111,8 @@ $(function(){
 										<td class="headTd" width="40%">주소</td>
 										<td class="headTd" width="10%">전화번호</td>
 										<td class="headTd" width="10%">생년월일</td>
-										<td class="headTd" width="7%">음식점이름</td>
+										<td class="headTd" width="15%">음식점이름</td>
 										<td class="headTd" width="5%">포인트</td>
-										<td class="headTd" width="8%">상태</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -115,7 +120,7 @@ $(function(){
 										for (int i = 0; i < list.size(); i++) {
 											MasterBean bean = list.get(i);
 									%>
-									<tr>
+									<tr class="ttr">
 										<td><%=bean.getId()%></td>
 										<td><%=bean.getName()%></td>
 										<td><%=bean.getAddress()%></td>
@@ -123,9 +128,23 @@ $(function(){
 										<td><%=bean.getBirth()%></td>
 										<td><%=bean.getStorename()%></td>
 										<td><%=bean.getPoint()%></td>
-										<td>
+									</tr>
+									<tr class="requestTr">
+										<td colspan="4">
+											<select class="form-control">
+												<option value="empty" selected="selected">선택하세요</option>
+												<%
+													for(int j=0 ; j<unSelectedStore.size() ; j++){
+														%>
+														<option value="<%=unSelectedStore.get(i) %>"><%=unSelectedStore.get(i) %></option>
+														<%
+													}
+												%>
+											</select>
+										</td>
+										<td colspan="3">
 											<button type="button" class="btn btn-sm btn-primary">승인</button>
-											<button type="button" class="btn btn-sm btn-danger">거절</button>	
+											<button type="button" class="btn btn-sm btn-danger" id="<%=bean.getId()%>">거절</button>	
 										</td>
 									</tr>
 									<%

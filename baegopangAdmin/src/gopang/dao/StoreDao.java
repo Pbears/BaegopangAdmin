@@ -105,5 +105,18 @@ public class StoreDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	public List<String> selectAllUnSelectedStoreName() {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("selectAllUnSelectedStoreName");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 }

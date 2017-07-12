@@ -40,4 +40,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE RM BETWEEN #{start} AND #{end}
 		ORDER BY STORENAME
 	</select>
+	
+	<select id="selectAllUnSelectedStoreName" resultType="java.lang.String">
+		SELECT STORENAME
+		FROM UNSELECTEDSTORE
+	</select>
 </mapper>

@@ -41,11 +41,17 @@ div .storeInsertDiv {
 	width: 100%;
 	text-align: right;
 }
+div .divInfo{
+	white-space: nowrap; 
+    width: 50em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 </style>
 <script>
 	$(function() {
 		$("button#noticeInsertBtn").click(function() {
-			alert("추가!");
+			location.href="/baegopangAdmin/jsp/notice/insert.jsp";
 		});
 		$("button.noticeDeleteBtn").click(function() {
 			alert("삭제!");
@@ -126,7 +132,7 @@ div .storeInsertDiv {
 										<td><%=bean.getNo() %></td>
 										<td><%=bean.getAdminId() %></td>
 										<td><%=bean.getTitle() %></td>
-										<td><%=bean.getInfo() %></td>
+										<td><div class="divInfo"><%=bean.getInfo() %></div></td>
 										<td><%=bean.getRegdate() %></td>
 										<td><button type="button" class="btn btn-sm btn-danger noticeDeleteBtn">삭제</button></td>
 									</tr>

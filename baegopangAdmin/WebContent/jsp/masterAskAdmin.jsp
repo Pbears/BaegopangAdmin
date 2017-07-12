@@ -59,11 +59,15 @@ textarea{
 </style>
 <script>
 	$(function() {
+		$("tr.answerTr, .completeAnswer").hide();
 		$("button.answerInsertBtn").click(function() {
-			alert("추가!");
+			$("form[id='"+$(this).attr("id")+"']").submit();
 		});
 		$("button.questionDeleteBtn").click(function() {
 			alert("삭제!");
+		});
+		$("tr.QeustionTr, .completeTr").click(function(){
+			$(this).next().toggle(500);
 		});
 	});
 </script>
@@ -133,32 +137,48 @@ textarea{
 									<%
 										for (int i = 0; i < list.size(); i++) {
 											masterAskAdminBean bean = list.get(i);
+											if(bean.getHit()==0){
+											%>
+											<tr class="QeustionTr" id="<%=bean.getNo() %>">
+												<td><%=bean.getNo() %></td>
+												<td><%=bean.getMasterId() %></td>
+												<td><%=bean.getTitle() %></td>
+												<td><%=bean.getMasterInfo() %></td>
+												<td><%=bean.getAdminId() %></td>
+												<td><%=bean.getRegdate() %></td>
+												<td><button type="button" class="btn btn-sm btn-danger" disabled="disabled">답변요망</button></td>
+											</tr>
+											<tr class="answerTr">
+												<td colspan="6">
+													<form action="/baegopangAdmin/jsp/masterAskAdmin/insert.jsp" method="post" id="<%=bean.getNo() %>">
+														<textarea class="form-control answerTextArea" rows="3" name="answer"></textarea>
+														<input type="hidden" name="no" value="<%=bean.getNo() %>">
+													</form>
+												</td>
+												<td colspan="1">
+													<button type="button" class="btn btn-sm btn-primary answerInsertBtn" id="<%=bean.getNo() %>">답변</button>
+												</td>
+											</tr>
+											<%
+											}
+											else{
+											%>
+											<tr class="completeTr">
+												<td><%=bean.getNo() %></td>
+												<td><%=bean.getMasterId() %></td>
+												<td><%=bean.getTitle() %></td>
+												<td><%=bean.getMasterInfo() %></td>
+												<td><%=bean.getAdminId() %></td>
+												<td><%=bean.getRegdate() %></td>
+												<td><button type="button" class="btn btn-sm btn-primary" disabled="disabled">답변완료</button></td>
+											</tr>
+											<tr class="completeAnswer">
+												<td colspan="7"><%=bean.getAdminInfo() %></td>
+											</tr>
+											<%
+											}
 									%>
-									<div>
-										<tr class="QeustionTr" id="<%=bean.getNo() %>">
-											<td><%=bean.getNo() %></td>
-											<td><%=bean.getMasterId() %></td>
-											<td><%=bean.getTitle() %></td>
-											<td><%=bean.getMasterInfo() %></td>
-											<td><%=bean.getAdminId() %></td>
-											<td><%=bean.getRegdate() %></td>
-											<td><button type="button" class="btn btn-sm btn-danger questionDeleteBtn">삭제</button></td>
-										</tr>
-										<tr class="answerTr" id="<%=bean.getNo() %>">
-											<td colspan="7">
-												<div class="answerDiv col-lg-12">
-													<div class="col-lg-11">
-														<div class="form-group">
-						                                <textarea class="form-control answerTextArea" rows="3"></textarea>
-						                            </div>
-													</div>
-													<div class="col-lg-1">
-														<button type="button" class="btn btn-sm btn-primary answerInsertBtn">답변</button>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</div>
+									
 									<%
 										}
 									%>

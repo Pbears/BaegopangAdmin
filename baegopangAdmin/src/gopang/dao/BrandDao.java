@@ -65,4 +65,17 @@ public class BrandDao {
 		}
 	}
 	
+	public List<String> selectAllBrandNo(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("selectAllBrandNo");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
 }

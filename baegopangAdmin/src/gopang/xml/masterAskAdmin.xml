@@ -21,4 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE RM BETWEEN #{start} AND #{end}
 		ORDER BY NO
 	</select>
+	
+	<update id="insertAnswer" parameterType="java.lang.String">
+		UPDATE MASTERASKADMIN
+		SET ADMININFO=#{answer},
+			hit=1
+		WHERE no=#{no}
+	</update>
 </mapper>
