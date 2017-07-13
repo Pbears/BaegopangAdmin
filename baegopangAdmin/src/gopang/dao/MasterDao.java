@@ -65,7 +65,7 @@ public class MasterDao {
 			closeSqlSession(sqlSession);
 		}
 	}
-	
+
 	public int getRequestMasterTotalRow() {
 		SqlSession sqlSession = null;
 		try {
@@ -91,7 +91,7 @@ public class MasterDao {
 			closeSqlSession(sqlSession);
 		}
 	}
-	
+
 	public List<MasterBean> searchRequestMaster(HashMap<String, Object> map) {
 		SqlSession sqlSession = null;
 		try {
@@ -100,6 +100,35 @@ public class MasterDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+
+	public void negativeRequestMaster(String id) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.delete("negativeRequestMaster", id);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public void approvalRequestMaster(MasterBean bean){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.insert("approvalRequestMaster", bean);
+			sqlSession.delete("negativeRequestMaster", bean.getId());
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
 			closeSqlSession(sqlSession);
 		}

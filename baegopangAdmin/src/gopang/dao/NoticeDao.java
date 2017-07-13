@@ -86,7 +86,7 @@ public class NoticeDao {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			sqlSession.insert("deleteNotice", no);
+			sqlSession.delete("deleteNotice", no);
 			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

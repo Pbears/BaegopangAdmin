@@ -45,4 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT STORENAME
 		FROM UNSELECTEDSTORE
 	</select>
+	
+	<delete id="deleteUnselectedStore" parameterType="java.lang.String">
+		DELETE FROM UNSELECTEDSTORE
+		WHERE STORENAME=#{storename}
+	</delete>
 </mapper>

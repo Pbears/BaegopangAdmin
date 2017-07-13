@@ -39,10 +39,27 @@ table{
 $(function(){
 	$("tr.requestTr").hide();
 	$("button.btn-primary").click(function(){
-		alert('승인');
+		var id = $(this).parent().parent().prev().find('.tdId').text()
+		var pw = $(this).parent().parent().prev().find('.tdPw').text()
+		var name = $(this).parent().parent().prev().find('.tdName').text()
+		var address = $(this).parent().parent().prev().find('.tdAddress').text()
+		var tel = $(this).parent().parent().prev().find('.tdTel').text()
+		var birth = $(this).parent().parent().prev().find('.tdBirth').text()
+		var storename = $(this).parent().prev().children().val();
+		
+		var result = confirm('승인할 정보가 맞습니까?\n\n'+'   id : '+id+'\n   pw : '+pw+'\n   name : '+name
+				+'\n   address : '+address+'\n   tel : '+tel+'\n   birth : '+birth+'\n   storename : '+storename);
+		if(result) { 
+			location.href="/baegopangAdmin/jsp/masterRequest/insert.jsp?id="+id+
+					"&pw="+pw+"&name="+name+"&address="+address+"&tel="+tel+"&birth="+birth+"&storename="+storename;
+		}
+		
 	});
 	$("button.btn-danger").click(function(){
-		alert($(this).attr("id"));
+		var result = confirm('정말 삭제하시겠습니까?');
+		if(result) { 
+			location.href="/baegopangAdmin/jsp/masterRequest/delete.jsp?id="+$(this).attr("id");
+		}
 	});
 	$("tr.ttr").click(function(){
 		$(this).next().toggle(500);
@@ -107,10 +124,11 @@ $(function(){
 								<thead>
 									<tr>
 										<td class="headTd" width="10%">아이디</td>
-										<td class="headTd" width="10%">이름</td>
+										<td class="headTd" width="10%">비밀번호</td>
+										<td class="headTd" width="5%">이름</td>
 										<td class="headTd" width="40%">주소</td>
 										<td class="headTd" width="10%">전화번호</td>
-										<td class="headTd" width="10%">생년월일</td>
+										<td class="headTd" width="5%">생년월일</td>
 										<td class="headTd" width="15%">음식점이름</td>
 										<td class="headTd" width="5%">포인트</td>
 									</tr>
@@ -121,22 +139,23 @@ $(function(){
 											MasterBean bean = list.get(i);
 									%>
 									<tr class="ttr">
-										<td><%=bean.getId()%></td>
-										<td><%=bean.getName()%></td>
-										<td><%=bean.getAddress()%></td>
-										<td><%=bean.getTel()%></td>
-										<td><%=bean.getBirth()%></td>
-										<td><%=bean.getStorename()%></td>
-										<td><%=bean.getPoint()%></td>
+										<td class="tdId"><%=bean.getId()%></td>
+										<td class="tdPw"><%=bean.getPw() %></td>
+										<td class="tdName"><%=bean.getName()%></td>
+										<td class="tdAddress"><%=bean.getAddress()%></td>
+										<td class="tdTel"><%=bean.getTel()%></td>
+										<td class="tdBirth"><%=bean.getBirth()%></td>
+										<td class="tdStoreName"><%=bean.getStorename()%></td>
+										<td class="tdPoint"><%=bean.getPoint()%></td>
 									</tr>
 									<tr class="requestTr">
 										<td colspan="4">
 											<select class="form-control">
 												<option value="empty" selected="selected">선택하세요</option>
 												<%
-													for(int j=0 ; j<unSelectedStore.size() ; j++){
+													for(int j=0 ; j < unSelectedStore.size() ; j++){
 														%>
-														<option value="<%=unSelectedStore.get(i) %>"><%=unSelectedStore.get(i) %></option>
+														<option value="<%=unSelectedStore.get(j) %>"><%=unSelectedStore.get(j) %></option>
 														<%
 													}
 												%>

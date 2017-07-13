@@ -118,5 +118,19 @@ public class StoreDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	public void deleteUnselectedStore(String storename){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.delete("deleteUnselectedStore", storename);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 }
