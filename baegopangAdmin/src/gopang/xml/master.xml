@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="approvalRequestMaster" parameterType="master">
-		INSERT INTO MASTER
+		INSERT INTO MASTER(ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME, POINT)
 		VALUES(#{id}, #{pw}, #{name}, #{address}, #{tel}, TO_DATE(#{birth},'YY-MM-DD'), #{storename}, 0)
 	</insert>
 
