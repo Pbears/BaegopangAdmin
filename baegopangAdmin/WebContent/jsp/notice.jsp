@@ -54,7 +54,10 @@ div .divInfo{
 			location.href="/baegopangAdmin/jsp/notice/insert.jsp";
 		});
 		$("button.noticeDeleteBtn").click(function() {
-			alert("삭제!");
+			var result = confirm('정말 삭제하시겠습니까?');
+			if(result) { 
+				location.href="/baegopangAdmin/jsp/notice/delete.jsp?no="+$(this).attr("id");
+			}
 		});
 	});
 </script>
@@ -134,7 +137,7 @@ div .divInfo{
 										<td><%=bean.getTitle() %></td>
 										<td><div class="divInfo"><%=bean.getInfo() %></div></td>
 										<td><%=bean.getRegdate() %></td>
-										<td><button type="button" class="btn btn-sm btn-danger noticeDeleteBtn">삭제</button></td>
+										<td><button type="button" class="btn btn-sm btn-danger noticeDeleteBtn" id="<%=bean.getNo() %>">삭제</button></td>
 									</tr>
 									<%
 										}

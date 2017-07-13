@@ -19,13 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RM, NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
 		FROM MASTERASKADMIN)
 		WHERE RM BETWEEN #{start} AND #{end}
-		ORDER BY NO
+		ORDER BY REGDATE DESC
 	</select>
 	
 	<update id="insertAnswer" parameterType="java.lang.String">
 		UPDATE MASTERASKADMIN
 		SET ADMININFO=#{answer},
-			hit=1
+			hit=1,
+			ADMINID = 'admin'
 		WHERE no=#{no}
 	</update>
 </mapper>

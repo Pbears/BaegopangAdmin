@@ -23,6 +23,12 @@ div.innerDiv {
 	width: 60%;
 	margin: 0 auto;
 }
+div.innerInnerDiv {
+	padding: 20px;
+}
+textarea {
+	resize: none;
+}
 </style>
 <script>
 	$(function() {
@@ -52,20 +58,20 @@ div.innerDiv {
 				<div class="row">
 					<form action="/baegopangAdmin/jsp/notice/insertProcess.jsp" method="post" name="insertFrm">
 						<div class="innerDiv">
-							<div class="col-lg-12">
+							<div class="form-group innerInnerDiv col-lg-12">
 								<h2>공지사항 등록하기</h2>
 							</div>
 
-							<div class="form-group">
+							<div class="form-group innerInnerDiv">
 								<label>제목</label> <input class="form-control" name="title">
 							</div>
 
-							<div class="form-group">
+							<div class="form-group innerInnerDiv">
 								<label>내용</label>
-								<textarea class="form-control" rows="3" name="info"></textarea>
+								<textarea class="form-control" rows="25" name="info"></textarea>
 							</div>
 
-							<div class="form-group">
+							<div class="form-group innerInnerDiv">
 								<button type="submit" class="btn btn-default">등록</button>
 								<button type="reset" class="btn btn-primary">취소</button>
 							</div>

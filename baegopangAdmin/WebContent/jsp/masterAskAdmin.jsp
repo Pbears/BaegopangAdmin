@@ -134,7 +134,7 @@ textarea{
 									</tr>
 								</thead>
 								<tbody>
-									<%
+										<%
 										for (int i = 0; i < list.size(); i++) {
 											masterAskAdminBean bean = list.get(i);
 											if(bean.getHit()==0){
@@ -198,7 +198,7 @@ textarea{
 											if (currentBlock > 1) {
 												if (currentPage != startPage) {
 										%>
-												<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=startPage - 1%>">
+												<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp?page=<%=startPage - 1%>">
 													Previous
 												</a>
 										<%
@@ -210,7 +210,7 @@ textarea{
 											}else {
 												if (currentPage != startPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=currentPage - 1%>">
+													<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp?page=<%=currentPage - 1%>">
 														Previous
 													</a>
 										<%
@@ -234,7 +234,7 @@ textarea{
 							 					} else {
 							 			%> 
 							 					<li>
-							 						<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=i%>">
+							 						<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp?page=<%=i%>">
 							 							<%=i %>
 													</a>
 												</li>
@@ -248,7 +248,7 @@ textarea{
 											if (totalPage > endPage) {
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -260,7 +260,7 @@ textarea{
 											}else{
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/notice.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
