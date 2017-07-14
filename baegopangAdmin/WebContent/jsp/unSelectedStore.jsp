@@ -104,14 +104,14 @@ $(function(){
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <td class="headTd" width="10%">음식점이름</td>
+                                        <td class="headTd" width="20%">음식점이름</td>
                                         <td class="headTd" width="10%">브랜드번호</td>
-                                        <td class="headTd" width="10%">위치</td>
+                                        <td class="headTd" width="20%">위치</td>
                                         <td class="headTd" width="5%">평점</td>
                                         <td class="headTd" width="10%">영업시간</td>
                                         <td class="headTd" width="10%">전화번호</td>
                                         <td class="headTd" width="10%">최저배달가격</td>
-                                        <td class="headTd" width="30%">정보</td>
+                                        <td class="headTd" width="10%">정보</td>
                                         <td class="headTd" width="5%">상태</td>
                                     </tr>
                                 </thead>
