@@ -50,7 +50,6 @@ $(function(){
 </script>
 <script>
 $(function(){
-	alert('삭제와 추가 구현');
 });
 </script>
 <body>

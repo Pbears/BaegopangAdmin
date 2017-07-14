@@ -40,7 +40,6 @@ div .brandInsertDiv{
 </style>
 <script>
 $(function(){
-	alert('브랜드를 음식점이 있는 브랜드와 없는 브랜드를 나눠서 뿌리고 음식점이 없으면 삭제가능, 있으면 아무것도 나오지않게 그리고 추가 기능 구현');
 	$("button#brandInsertBtn").click(function(){
 		alert("추가!");
 	});

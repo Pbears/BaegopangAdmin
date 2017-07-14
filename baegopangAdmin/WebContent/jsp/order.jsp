@@ -42,7 +42,6 @@ div .divAddress, .divMenuName{
 </style>
 <script>
 $(function(){
-	alert('주문상태에따라 다른곳에 출력');
 });
 </script>
 <body>

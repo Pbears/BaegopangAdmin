@@ -42,7 +42,6 @@ div .divInfo{
 </style>
 <script>
 $(function(){
-	alert('삭제 안되고 추가만 가능하게');
 	$("button.menuDeleteBtn").click(function(){
 		alert("삭제!");
 	});
@@ -101,10 +100,10 @@ $(function(){
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <td class="headTd" width="33%">메뉴이름</td>
-										<td class="headTd" width="7%">브랜드번호</td>
+                                        <td class="headTd" width="25%">메뉴이름</td>
+										<td class="headTd" width="10%">브랜드번호</td>
 										<td class="headTd" width="5%">가격</td>
-										<td class="headTd" width="40%">정보</td>
+										<td class="headTd" width="45%">정보</td>
 										<td class="headTd" width="10%">사진</td>
 										<td class="headTd" width="5%">상태</td>
                                     </tr>
