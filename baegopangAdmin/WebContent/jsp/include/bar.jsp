@@ -133,7 +133,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="/baegopangAdmin/jsp/masterRequest.jsp">
+						<a href="/baegopangAdmin/jsp/masterInRequest.jsp">
 							<i class="fa fa-fw fa-table"></i> MasterRequest
 						</a>
 					</li>

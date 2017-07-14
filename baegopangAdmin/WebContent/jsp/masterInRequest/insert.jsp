@@ -28,7 +28,7 @@
 	store.deleteUnselectedStore(storename);
 	
 	
-	response.sendRedirect("/baegopangAdmin/jsp/masterRequest.jsp");
+	response.sendRedirect("/baegopangAdmin/jsp/masterInRequest.jsp");
 	
 %>
 </body>

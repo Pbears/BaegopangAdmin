@@ -109,7 +109,7 @@ $(function(){
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							MasterRequest <small>환영합니다 <%=id%>님
+							MasterInRequest <small>환영합니다 <%=id%>님
 							</small>
 						</h1>
 					</div>
@@ -118,7 +118,7 @@ $(function(){
 
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>MasterRequest List</h2>
+						<h2>사장님 가입요청</h2>
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>

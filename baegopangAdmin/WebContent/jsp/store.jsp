@@ -106,7 +106,7 @@ $(function(){
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <td class="headTd" width="10%">음식점이름</td>
+                                        <td class="headTd" width="15%">음식점이름</td>
                                         <td class="headTd" width="10%">브랜드번호</td>
                                         <td class="headTd" width="10%">위치</td>
                                         <td class="headTd" width="5%">평점</td>
@@ -114,7 +114,6 @@ $(function(){
                                         <td class="headTd" width="10%">전화번호</td>
                                         <td class="headTd" width="10%">최저배달가격</td>
                                         <td class="headTd" width="30%">정보</td>
-                                        <td class="headTd" width="5%">상태</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,7 +130,6 @@ $(function(){
                                         <td><%=bean.getTel() %></td>
                                         <td><%=bean.getMinprice() %></td>
                                         <td><div class="divInfo"><%=bean.getInfo() %></div></td>
-                                        <td><button type="button" class="btn btn-sm btn-danger storeDeleteBtn">삭제</button></td>
                                     </tr>
                                     <%
 										}

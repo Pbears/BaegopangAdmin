@@ -48,6 +48,11 @@ $(function(){
 	});
 });
 </script>
+<script>
+$(function(){
+	alert('삭제와 추가 구현');
+});
+</script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");

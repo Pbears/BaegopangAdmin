@@ -12,7 +12,7 @@
 	String id = request.getParameter("id");
 	MasterDao master = new MasterDao();
 	master.negativeRequestMaster(id);
-	response.sendRedirect("/baegopangAdmin/jsp/masterRequest.jsp");
+	response.sendRedirect("/baegopangAdmin/jsp/masterInRequest.jsp");
 %>
 </body>
 </html>

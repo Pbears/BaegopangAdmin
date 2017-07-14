@@ -36,6 +36,7 @@ table{
 </style>
 <script>
 $(function(){
+	alert('삭제하면 주문테이블에서도 삭제구현');
 	$("button.memberDeleteBtn").click(function(){
 		alert("삭제!");
 	});

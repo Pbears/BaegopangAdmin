@@ -102,8 +102,7 @@ $(function(){
 										<td class="headTd" width="10%">전화번호</td>
 										<td class="headTd" width="10%">생년월일</td>
 										<td class="headTd" width="10%">음식점이름</td>
-										<td class="headTd" width="5%">포인트</td>
-										<td class="headTd" width="5%">상태</td>
+										<td class="headTd" width="10%">포인트</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -119,7 +118,6 @@ $(function(){
 										<td><%=bean.getBirth()%></td>
 										<td><%=bean.getStorename()%></td>
 										<td><%=bean.getPoint()%></td>
-										<td><button type="button" class="btn btn-sm btn-danger masterDeleteBtn">삭제</button></td>
 									</tr>
 									<%
 										}
@@ -141,7 +139,7 @@ $(function(){
 											if (currentBlock > 1) {
 												if (currentPage != startPage) {
 										%>
-												<a href="/baegopangAdmin/jsp/master.jsp?page=<%=startPage - 1%>">
+												<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=startPage - 1%>">
 													Previous
 												</a>
 										<%
@@ -153,7 +151,7 @@ $(function(){
 											}else {
 												if (currentPage != startPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/master.jsp?page=<%=currentPage - 1%>">
+													<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=currentPage - 1%>">
 														Previous
 													</a>
 										<%
@@ -177,7 +175,7 @@ $(function(){
 							 					} else {
 							 			%> 
 							 					<li>
-							 						<a href="/baegopangAdmin/jsp/master.jsp?page=<%=i%>">
+							 						<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=i%>">
 							 							<%=i %>
 													</a>
 												</li>
@@ -191,7 +189,7 @@ $(function(){
 											if (totalPage > endPage) {
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/master.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -203,7 +201,7 @@ $(function(){
 											}else{
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/master.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%

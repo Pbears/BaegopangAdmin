@@ -59,6 +59,7 @@ textarea{
 </style>
 <script>
 	$(function() {
+		alert('상태에 따라 다르게 출력하고 최신순');
 		$("tr.answerTr, .completeAnswer").hide();
 		$("button.answerInsertBtn").click(function() {
 			$("form[id='"+$(this).attr("id")+"']").submit();

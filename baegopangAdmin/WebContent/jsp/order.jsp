@@ -40,6 +40,11 @@ div .divAddress, .divMenuName{
     text-overflow: ellipsis; 
 }	
 </style>
+<script>
+$(function(){
+	alert('주문상태에따라 다른곳에 출력');
+});
+</script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
