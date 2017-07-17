@@ -22,10 +22,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY BRANDNO
 	</select>
 	
-	<select id="selectAllBrandNo" resultType="java.lang.Integer">
-		SELECT BRANDNO
+	<select id="selectAllBrandNo" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT MAX(BRANDNO)
+		FROM
+		(SELECT BRANDNO
 		FROM BRAND
+		WHERE BRANDNO LIKE #{brandNo}||'%')
 	</select>
+	
+	<insert id="insertBrand" parameterType="brand">
+		INSERT INTO BRAND(BRANDNO,BRANDNAME,PICTURE) VALUES(#{brandno},#{brandname},#{picture})
+	</insert>
+	
+	<delete id="deleteBrand" parameterType="java.lang.String">
+		DELETE FROM BRAND
+		WHERE BRANDNO = #{brandno}
+	</delete>
 </mapper>
 
 

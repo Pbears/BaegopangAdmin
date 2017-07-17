@@ -44,7 +44,7 @@ $(function(){
 		location.href="/baegopangAdmin/jsp/brand/brandInsert.jsp";
 	});
 	$("button.brandDeleteBtn").click(function(){
-		alert("삭제!");
+		location.href="/baegopangAdmin/jsp/brand/brandDelete.jsp?brandno="+$(this).attr("id");
 	});
 });
 </script>
@@ -122,7 +122,7 @@ $(function(){
 										<td><%=bean.getBrandname()%></td>
 										<td><img src="/baegopangAdmin<%=bean.getPicture()%>"
 											width="50" height="50"></td>
-										<td><button type="button" class="btn btn-sm btn-danger brandDeleteBtn">삭제</button></td>
+										<td><button type="button" class="btn btn-sm btn-danger brandDeleteBtn" id="<%=bean.getBrandno()%>">삭제</button></td>
 									</tr>
 									<%
 										}

@@ -65,14 +65,42 @@ public class BrandDao {
 		}
 	}
 	
-	public List<String> selectAllBrandNo(){
+	public Integer selectAllBrandNo(char brandNo){
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectList("selectAllBrandNo");
+			return (Integer) sqlSession.selectOne("selectAllBrandNo", brandNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public void insertBrand(BrandBean bean){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.selectOne("insertBrand", bean);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public void deleteBrand(String brandno){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.selectOne("deleteBrand", brandno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
 			closeSqlSession(sqlSession);
 		}

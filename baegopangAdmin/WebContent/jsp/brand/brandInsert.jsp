@@ -29,15 +29,12 @@ div#innerDiv {
 			$("form#frm").submit();
 		});
 		$("select#selectBn").change(function(){
-			alert("새창띄우기!");
 		});
 	})
 </script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
-		BrandDao brand = new BrandDao();
-		List<String> list = brand.selectAllBrandNo();
 	%>
 	
 	<div id="wrapper">
