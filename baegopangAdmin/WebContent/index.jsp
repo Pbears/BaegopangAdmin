@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-.layer {
+div.layer {
 	position: absolute;
 	top: 0;
 	right: 0;

@@ -26,7 +26,10 @@ div#innerDiv {
 <script>
 	$(function() {
 		$("button#insertBrand").click(function(){
-			alert("추가!");
+			$("form#frm").submit();
+		});
+		$("select#selectBn").change(function(){
+			alert("새창띄우기!");
 		});
 	})
 </script>
@@ -36,6 +39,7 @@ div#innerDiv {
 		BrandDao brand = new BrandDao();
 		List<String> list = brand.selectAllBrandNo();
 	%>
+	
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp" />
 
@@ -68,37 +72,39 @@ div#innerDiv {
 									</div>
 									<div class="panel-body">
 										<div id="innerDiv">
-											<div class="col-lg-12">
-												<div class="form-group">
-													<select class="form-control">
-														<option value="empty" selected="selected">선택하세요</option>
-														<option value="10">치킨</option>
-														<option value="20">중국집</option>
-														<option value="30">피자</option>
-														<option value="40">분식</option>
-														<option value="50">족발/보쌈</option>
-														<option value="60">찜닭</option>
-														<option value="70">일식</option>
-														<option value="80">도시락</option>
-														<option value="90">페스트푸드</option>
-													</select>
-													<p class="help-block">종류를 선택하세요.</p>
+											<form action="/baegopangAdmin/jsp/brand/brandProcess.jsp" method="post" id="frm">
+												<div class="col-lg-12">
+													<div class="form-group">
+														<select name="brandNo" class="form-control" id="selectBn">
+															<option value="empty" selected="selected">선택하세요</option>
+															<option value="10">치킨</option>
+															<option value="20">중국집</option>
+															<option value="30">피자</option>
+															<option value="40">분식</option>
+															<option value="50">족발/보쌈</option>
+															<option value="60">찜닭</option>
+															<option value="70">일식</option>
+															<option value="80">도시락</option>
+															<option value="90">페스트푸드</option>
+														</select>
+													</div>
 												</div>
-											</div>
-											<div class="col-lg-12">
-												<input class="form-control">
-												<p class="help-block">브랜드 이름을 입력하세요.</p>
-											</div>
-
-											<div class="col-lg-12">
-												<div class="form-group">
-													<label>브랜드 이미지를 추가하세요.</label> <input type="file">
+												<div class="col-lg-12">
+													<input type="text" class="form-control" name="brandName">
+													<p class="help-block">브랜드 이름을 입력하세요.</p>
 												</div>
-											</div>
-											
-											<div class="col-lg-12">
-												<button type="button" class="btn btn-sm btn-primary" id="insertBrand">추가</button>
-											</div>
+	
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label>브랜드 이미지를 추가하세요.</label>
+														<input type="file" class="form-control" name="brandImg">
+													</div>
+												</div>
+												
+												<div class="col-lg-12">
+													<button type="button" class="btn btn-sm btn-primary" id="insertBrand">추가</button>
+												</div>
+											</form>
 										</div>
 									</div>
 								</div>

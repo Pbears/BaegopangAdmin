@@ -41,7 +41,7 @@ div .brandInsertDiv{
 <script>
 $(function(){
 	$("button#brandInsertBtn").click(function(){
-		alert("추가!");
+		location.href="/baegopangAdmin/jsp/brand/brandInsert.jsp";
 	});
 	$("button.brandDeleteBtn").click(function(){
 		alert("삭제!");
