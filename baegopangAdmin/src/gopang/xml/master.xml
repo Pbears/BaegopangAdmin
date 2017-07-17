@@ -60,4 +60,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM REQUESTSIGNUP
 		WHERE ID=#{id}
 	</delete>
+	
 </mapper>

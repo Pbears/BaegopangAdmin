@@ -1,3 +1,4 @@
+<%@page import="gopang.bean.BrandBean"%>
 <%@page import="gopang.dao.BrandDao"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="gopang.bean.MasterBean"%>
@@ -28,13 +29,13 @@ div#innerDiv {
 		$("button#insertBrand").click(function(){
 			$("form#frm").submit();
 		});
-		$("select#selectBn").change(function(){
-		});
 	})
 </script>
 <body>
-	<%
+		<%
 		String id = (String) session.getAttribute("id");
+		BrandDao brand = new BrandDao();
+		List<BrandBean> list = brand.selectAllBrandName(); 
 	%>
 	
 	<div id="wrapper">
@@ -48,7 +49,7 @@ div#innerDiv {
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Brand 추가 <small>환영합니다 <%=id%>님
+							Menu 추가 <small>환영합니다 <%=id%>님
 							</small>
 						</h1>
 					</div>
@@ -57,7 +58,7 @@ div#innerDiv {
 
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Brand Insert</h2>
+						<h2>Menu Insert</h2>
 
 						<div class="row">
 							<div class="col-lg-12">
@@ -69,32 +70,50 @@ div#innerDiv {
 									</div>
 									<div class="panel-body">
 										<div id="innerDiv">
-											<form action="/baegopangAdmin/jsp/brand/brandProcess.jsp" method="post" id="frm">
+											<form action="/baegopangAdmin/jsp/unSelectedStore/unSelectedStoreInsertProcess.jsp" method="post" id="frm">
 												<div class="col-lg-12">
 													<div class="form-group">
-														<select name="brandNo" class="form-control" id="selectBn">
+														<select name="brandname" class="form-control" id="selectBn">
 															<option value="empty" selected="selected">선택하세요</option>
-															<option value="10">치킨</option>
-															<option value="20">중국집</option>
-															<option value="30">피자</option>
-															<option value="40">분식</option>
-															<option value="50">족발/보쌈</option>
-															<option value="60">찜닭</option>
-															<option value="70">일식</option>
-															<option value="80">도시락</option>
-															<option value="90">페스트푸드</option>
+															<%
+																for(int i=0; i<list.size() ; i++){
+																	BrandBean bean = list.get(i);
+																	%>
+																		<option value="<%=bean.getBrandname() %>" ><%=bean.getBrandname() %></option>
+																	<%
+																}
+															%>
 														</select>
+														<p class="help-block">브랜드를 선택하세요.</p>
 													</div>
 												</div>
+												
 												<div class="col-lg-12">
-													<input type="text" class="form-control" name="brandName">
-													<p class="help-block">브랜드 이름을 입력하세요.</p>
+													<input type="text" class="form-control" name="storename">
+													<p class="help-block">가게 이름을 입력하세요.</p>
 												</div>
-	
+												
+												<div class="col-lg-12">
+													<input type="text" class="form-control" name="location">
+													<p class="help-block">위치를 입력하세요.</p>
+												</div>
+												
+												<div class="col-lg-12">
+													<input type="text" class="form-control" name="tel">
+													<p class="help-block">전화번호를 입력하세요.</p>
+												</div>
+												
 												<div class="col-lg-12">
 													<div class="form-group">
-														<label>브랜드 이미지를 추가하세요.</label>
-														<input type="file" class="form-control" name="brandImg">
+														<input type="text" class="form-control" name="minprice">
+														<p class="help-block">배달 최소 가격을 입력하세요.</p>
+													</div>
+												</div>
+												
+												<div class="col-lg-12">
+													<div class="form-group">
+														<textarea rows="6" class="form-control" name="info"></textarea>
+														<p class="help-block">매장 정보를 입력하세요.</p>
 													</div>
 												</div>
 												
@@ -107,11 +126,16 @@ div#innerDiv {
 								</div>
 							</div>
 						</div>
+
+
 					</div>
+
 				</div>
 				<!-- /.container-fluid -->
+
 			</div>
 			<!-- /#page-wrapper -->
+
 		</div>
 		<!-- /#wrapper -->
 </body>

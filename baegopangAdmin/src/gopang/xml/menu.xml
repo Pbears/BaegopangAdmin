@@ -19,7 +19,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT ROW_NUMBER() OVER(ORDER BY MENUNAME DESC) RM, MENUNAME, BRANDNO, PRICE, INFO, PICTURE
 		FROM MENU)
 		WHERE RM BETWEEN #{start} AND #{end}
-		ORDER BY MENUNAME
+		ORDER BY BRANDNO
 	</select>
+	
+	<insert id="insertMenu" parameterType="menu">
+		INSERT INTO MENU(MENUNAME,BRANDNO,PRICE,INFO,PICTURE)
+		VALUES(#{menuname},#{brandno},#{price},#{info},#{picture})
+	</insert>
 	
 </mapper>

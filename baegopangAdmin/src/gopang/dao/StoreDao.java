@@ -133,4 +133,17 @@ public class StoreDao {
 		}
 	}
 
+	public void insertUnselectedStore(StoreBean bean){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.insert("insertUnselectedStore", bean);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 }

@@ -37,12 +37,11 @@ table{
 <script>
 $(function(){
 	$("button.memberDeleteBtn").click(function(){
-		alert("삭제!");
+		location.href="/baegopangAdmin/jsp/member/memberDelete.jsp?id="+$(this).attr("id");
 	});
 });
 </script>
 <body>
-
 	<%
 		String id = (String) session.getAttribute("id");
 		List<MemberBean> list = null;
@@ -118,7 +117,7 @@ $(function(){
 										<td><%=bean.getTel()%></td>
 										<td><%=bean.getBirth()%></td>
 										<td><%=bean.getPang()%></td>
-										<td><button type="button" class="btn btn-sm btn-danger memberDeleteBtn">삭제</button></td>
+										<td><button type="button" class="btn btn-sm btn-danger memberDeleteBtn" id="<%=bean.getId()%>">삭제</button></td>
 									</tr>
 									<%
 										}

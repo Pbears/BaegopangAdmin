@@ -65,5 +65,19 @@ public class MenuDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	public void insertMenu(MenuBean bean){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.insert("insertMenu", bean);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 }

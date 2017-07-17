@@ -26,7 +26,7 @@ public class MemberDao {
 		}
 	}
 
-	public List<MemberBean> selectAllMember(){
+	public List<MemberBean> selectAllMember() {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
@@ -38,7 +38,7 @@ public class MemberDao {
 			closeSqlSession(sqlSession);
 		}
 	}
-	
+
 	public int getMemberTotalRow() {
 		SqlSession sqlSession = null;
 		try {
@@ -50,8 +50,8 @@ public class MemberDao {
 		} finally {
 			closeSqlSession(sqlSession);
 		}
-	}	
-	
+	}
+
 	public List<MemberBean> searchMember(HashMap<String, Object> map) {
 		SqlSession sqlSession = null;
 		try {
@@ -60,6 +60,20 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+
+	public void deleteMember(String id) {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.delete("deleteMember", id);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
 		} finally {
 			closeSqlSession(sqlSession);
 		}

@@ -42,6 +42,7 @@ div .divAddress, .divMenuName{
 </style>
 <script>
 $(function(){
+
 });
 </script>
 <body>
@@ -116,8 +117,8 @@ $(function(){
 										for (int i = 0; i < list.size(); i++) {
 											OrderBean bean = list.get(i);
 									%>
-									<tr>
-										<td><%=bean.getOrdernumber() %></td>
+									<tr class="orderTr">
+										<td id="orderNumber"><%=bean.getOrdernumber() %></td>
 										<td><%=bean.getMemberid() %></td>
 										<td><%=bean.getMembername() %></td>
 										<td><%=bean.getMembertel() %></td>

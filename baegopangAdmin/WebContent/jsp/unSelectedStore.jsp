@@ -2,6 +2,7 @@
 <%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.util.List"%>
 <%@page import="gopang.dao.StoreDao"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -41,10 +42,11 @@ div .storeInsertDiv{
 <script>
 $(function(){
 	$("button#storeInsertBtn").click(function(){
-		alert("추가!");
+		location.href="/baegopangAdmin/jsp/unSelectedStore/unSelectedStoreInsert.jsp";
 	});
 	$("button.unSelectedStoreDeleteBtn").click(function(){
-		alert("삭제!");
+		$("input#storename").val($(this).attr("id"));
+		$("form#frm").submit();
 	});
 });
 </script>
@@ -133,7 +135,7 @@ $(function(){
                                         <td><%=bean.getTel() %></td>
                                         <td><%=bean.getMinprice() %></td>
                                         <td><%=bean.getInfo() %></td>
-                                        <td><button type="button" class="btn btn-sm btn-danger unSelectedStoreDeleteBtn">삭제</button></td>
+                                        <td><button type="button" class="btn btn-sm btn-danger unSelectedStoreDeleteBtn" id="<%=bean.getStorename() %>">삭제</button></td>
                                     </tr>
                                     <%
 										}
@@ -142,6 +144,9 @@ $(function(){
                             </table>
                         </div>
                     </div>
+                    <form action="/baegopangAdmin/jsp/unSelectedStore/unSelectedStoreDelete.jsp" method="post" id="frm">
+                    	<input type="hidden" id="storename" name="storename">
+                    </form>
                     
                     <!-- 페이지이동페이징 -->
 					<div class="col-lg-12">

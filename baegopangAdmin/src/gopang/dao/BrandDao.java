@@ -82,7 +82,7 @@ public class BrandDao {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			sqlSession.selectOne("insertBrand", bean);
+			sqlSession.insert("insertBrand", bean);
 			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,7 +96,7 @@ public class BrandDao {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			sqlSession.selectOne("deleteBrand", brandno);
+			sqlSession.delete("deleteBrand", brandno);
 			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,4 +106,29 @@ public class BrandDao {
 		}
 	}
 	
+	public List<BrandBean> selectAllBrandName() {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("selectAllBrandName");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public String selectBrandNo(String brandname){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectOne("selectBrandNo", brandname);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 }

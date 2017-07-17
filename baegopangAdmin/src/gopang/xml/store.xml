@@ -50,4 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM UNSELECTEDSTORE
 		WHERE STORENAME=#{storename}
 	</delete>
+	
+	<insert id="insertUnselectedStore" parameterType="store">
+		INSERT INTO UNSELECTEDSTORE(STORENAME, BRANDNO, LOCATION, GPA, HOURS, TEL, MINPRICE, INFO)
+		VALUES(#{storename},#{brandno},#{location},#{gpa},#{hours},#{tel},#{minprice},#{info})
+	</insert>
 </mapper>

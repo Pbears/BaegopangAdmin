@@ -33,7 +33,7 @@ td.headTd {
 table{
 	font-size: small;
 }
-div .brandInsertDiv{
+div#brandInsertDiv{
 	width: 100%;
 	text-align: right;
 }

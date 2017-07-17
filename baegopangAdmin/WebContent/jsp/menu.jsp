@@ -33,17 +33,24 @@ td.headTd {
 table{
 	font-size: small;
 }
-div .divInfo{
+div.divInfo{
 	white-space: nowrap; 
     width: 50em; 
     overflow: hidden;
     text-overflow: ellipsis; 
 }
+div#menuInsertBtn{
+	width: 100%;
+	text-align: right;
+}
 </style>
 <script>
 $(function(){
 	$("button.menuDeleteBtn").click(function(){
-		alert("삭제!");
+		alert("삭제구현하세요");
+	});
+	$("button#menuInsertBtn").click(function(){
+		location.href="/baegopangAdmin/jsp/menu/menuInsert.jsp";
 	});
 });
 </script>
@@ -94,6 +101,9 @@ $(function(){
 				<!-- /.row -->
 				
 				<div class="row">
+					<div class="col-lg-12 menuInsertDiv">
+						<button type="button" class="btn btn-sm btn-primary" id="menuInsertBtn">추가</button>
+					</div>
                     <div class="col-lg-12">
                         <h2>Menu List</h2>
                         <div class="table-responsive">

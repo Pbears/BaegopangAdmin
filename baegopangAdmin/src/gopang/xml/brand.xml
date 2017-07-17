@@ -38,6 +38,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM BRAND
 		WHERE BRANDNO = #{brandno}
 	</delete>
+	
+	<select id="selectAllBrandName" resultType="brand">
+		SELECT BRANDNAME
+		FROM BRAND
+	</select>
+	
+	<select id="selectBrandNo" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT BRANDNO
+		FROM BRAND
+		WHERE brandname = #{brandname}
+	</select>
 </mapper>
 
 
