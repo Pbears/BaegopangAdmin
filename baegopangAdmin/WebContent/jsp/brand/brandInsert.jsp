@@ -25,10 +25,8 @@ div#innerDiv {
 </style>
 <script>
 	$(function() {
-		$("button#insertBrand").click(function(){
+		$("button#insertBrand").click(function() {
 			$("form#frm").submit();
-		});
-		$("select#selectBn").change(function(){
 		});
 	})
 </script>
@@ -36,7 +34,7 @@ div#innerDiv {
 	<%
 		String id = (String) session.getAttribute("id");
 	%>
-	
+
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp" />
 
@@ -69,7 +67,8 @@ div#innerDiv {
 									</div>
 									<div class="panel-body">
 										<div id="innerDiv">
-											<form action="/baegopangAdmin/jsp/brand/brandProcess.jsp" method="post" id="frm">
+											<form action="/baegopangAdmin/jsp/brand/brandProcess.jsp"
+												method="post" id="frm" enctype="Multipart/form-data">
 												<div class="col-lg-12">
 													<div class="form-group">
 														<select name="brandNo" class="form-control" id="selectBn">
@@ -90,16 +89,16 @@ div#innerDiv {
 													<input type="text" class="form-control" name="brandName">
 													<p class="help-block">브랜드 이름을 입력하세요.</p>
 												</div>
-	
+
 												<div class="col-lg-12">
 													<div class="form-group">
-														<label>브랜드 이미지를 추가하세요.</label>
-														<input type="file" class="form-control" name="brandImg">
+														<label>브랜드 이미지를 추가하세요.</label> <input type="file"
+															class="form-control" name="brandImg">
 													</div>
 												</div>
-												
 												<div class="col-lg-12">
-													<button type="button" class="btn btn-sm btn-primary" id="insertBrand">추가</button>
+													<button type="button" class="btn btn-sm btn-primary"
+														id="insertBrand">추가</button>
 												</div>
 											</form>
 										</div>
