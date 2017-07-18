@@ -148,8 +148,23 @@
 						</a>
 					</li>
 					<li>
-						<a href="/baegopangAdmin/jsp/order.jsp">
-							<i class="fa fa-fw fa-table"></i> Order
+						<a href="/baegopangAdmin/jsp/orderComplete.jsp">
+							<i class="fa fa-fw fa-table"></i> OrderComplete
+						</a>
+					</li>
+					<li>
+						<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp">
+							<i class="fa fa-fw fa-table"></i> OrderConfirmWait
+						</a>
+					</li>
+					<li>
+						<a href="/baegopangAdmin/jsp/orderConfirmComplete.jsp">
+							<i class="fa fa-fw fa-table"></i> OrderConfirmComplete
+						</a>
+					</li>
+					<li>
+						<a href="/baegopangAdmin/jsp/orderConfirmNegative.jsp">
+							<i class="fa fa-fw fa-table"></i> OrderConfirmNegative
 						</a>
 					</li>
 					<li>

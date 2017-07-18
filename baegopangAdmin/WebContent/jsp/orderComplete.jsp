@@ -51,8 +51,9 @@ $(function(){
 		List<OrderBean> list = null;
 		OrderDao order = new OrderDao();
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("state","배달완료");
 		int pageScale = 8;
-		int totalRow = order.getOrderTotalRow();
+		int totalRow = order.getOrderTotalRow(map);
 		int currentPage = 0;
 		try {
 			currentPage = Integer.parseInt(request.getParameter("page"));
@@ -85,7 +86,7 @@ $(function(){
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Order <small>환영합니다 <%=id %>님</small>
+							주문완료 <small>환영합니다 <%=id %>님</small>
 						</h1>
 					</div>
 				</div>
@@ -93,7 +94,7 @@ $(function(){
 
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Order List</h2>
+						<h2>OrderComplete List</h2>
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
@@ -150,7 +151,7 @@ $(function(){
 											if (currentBlock > 1) {
 												if (currentPage != startPage) {
 										%>
-												<a href="/baegopangAdmin/jsp/order.jsp?page=<%=startPage - 1%>">
+												<a href="/baegopangAdmin/jsp/orderComplete.jsp?page=<%=startPage - 1%>">
 													Previous
 												</a>
 										<%
@@ -162,7 +163,7 @@ $(function(){
 											}else {
 												if (currentPage != startPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/order.jsp?page=<%=currentPage - 1%>">
+													<a href="/baegopangAdmin/jsp/orderComplete.jsp?page=<%=currentPage - 1%>">
 														Previous
 													</a>
 										<%
@@ -186,7 +187,7 @@ $(function(){
 							 					} else {
 							 			%> 
 							 					<li>
-							 						<a href="/baegopangAdmin/jsp/order.jsp?page=<%=i%>">
+							 						<a href="/baegopangAdmin/jsp/orderComplete.jsp?page=<%=i%>">
 							 							<%=i %>
 													</a>
 												</li>
@@ -200,7 +201,7 @@ $(function(){
 											if (totalPage > endPage) {
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/order.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/orderComplete.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -212,7 +213,7 @@ $(function(){
 											}else{
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/order.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/orderComplete.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%

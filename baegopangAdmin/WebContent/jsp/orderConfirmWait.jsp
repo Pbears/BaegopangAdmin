@@ -1,7 +1,7 @@
 <%@page import="java.util.HashMap"%>
-<%@page import="gopang.bean.MenuBean"%>
+<%@page import="gopang.bean.OrderBean"%>
 <%@page import="java.util.List"%>
-<%@page import="gopang.dao.MenuDao"%>
+<%@page import="gopang.dao.OrderDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,35 +33,27 @@ td.headTd {
 table{
 	font-size: small;
 }
-div.divInfo{
+div .divAddress, .divMenuName{
 	white-space: nowrap; 
-    width: 50em; 
+    width: 15em; 
     overflow: hidden;
     text-overflow: ellipsis; 
-}
-div.menuInsertDiv{
-	width: 100%;
-	text-align: right;
-}
+}	
 </style>
 <script>
 $(function(){
-	$("button.menuDeleteBtn").click(function(){
-		alert("삭제구현하세요");
-	});
-	$("button#menuInsertBtn").click(function(){
-		location.href="/baegopangAdmin/jsp/menu/menuInsert.jsp";
-	});
+
 });
 </script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
-		List<MenuBean> list = null;
-		MenuDao menu = new MenuDao();
+		List<OrderBean> list = null;
+		OrderDao order = new OrderDao();
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("state","승인대기");
 		int pageScale = 8;
-		int totalRow = menu.getMenuTotalRow();
+		int totalRow = order.getOrderTotalRow(map);
 		int currentPage = 0;
 		try {
 			currentPage = Integer.parseInt(request.getParameter("page"));
@@ -81,10 +73,10 @@ $(function(){
 		map.put("start", start);
 		map.put("end", end);
 
-		list = menu.searchMenu(map);
+		list = order.searchOrder(map);
 	%>
 	<div id="wrapper">
-		<jsp:include page="/jsp/include/bar.jsp"/>
+		<jsp:include page="/jsp/include/bar.jsp" />
 
 		<div id="page-wrapper">
 
@@ -94,52 +86,61 @@ $(function(){
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Menu <small>환영합니다 <%=id %>님</small>
+							승인대기 <small>환영합니다 <%=id %>님</small>
 						</h1>
 					</div>
 				</div>
 				<!-- /.row -->
-				
+
 				<div class="row">
-					<div class="col-lg-12 menuInsertDiv">
-						<button type="button" class="btn btn-sm btn-primary" id="menuInsertBtn">추가</button>
-					</div>
-                    <div class="col-lg-12">
-                        <h2>Menu List</h2>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <td class="headTd" width="25%">메뉴이름</td>
-										<td class="headTd" width="10%">브랜드번호</td>
-										<td class="headTd" width="5%">가격</td>
-										<td class="headTd" width="45%">정보</td>
-										<td class="headTd" width="10%">사진</td>
-										<td class="headTd" width="5%">상태</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%
-										for (int i = 0; i < list.size(); i++) {
-											MenuBean bean = list.get(i);
-									%>
+					<div class="col-lg-12">
+						<h2>OrderConfirmWait List</h2>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
 									<tr>
-										<td><%=bean.getMenuname()%></td>
-										<td><%=bean.getBrandno()%></td>
-										<td><%=bean.getPrice()%></td>
-										<td><div class="divInfo"><%=bean.getInfo()%></div></td>
-										<td><img src="/baegopangAdmin<%=bean.getPicture()%>" width="50" height="50"></td>
-										<td><button type="button" class="btn btn-sm btn-danger menuDeleteBtn">삭제</button></td>
+										<td class="headTd" width="15%">주문번호</td>
+										<td class="headTd" width="10%">주문자ID</td>
+										<td class="headTd" width="5%">이름</td>
+										<td class="headTd" width="10%">주문자전화번호</td>
+										<td class="headTd" width="10%">주문자주소</td>
+										<td class="headTd" width="5%">가격</td>
+										<td class="headTd" width="10%">메뉴이름</td>
+										<td class="headTd" width="5%">수량</td>
+										<td class="headTd" width="10%">음식점이름</td>
+										<td class="headTd" width="10%">음식점전화번호</td>
+										<td class="headTd" width="5%">주문시간</td>
+										<td class="headTd" width="5%">상태</td>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+										for (int i = 0; i < list.size(); i++) {
+											OrderBean bean = list.get(i);
+									%>
+									<tr class="orderTr">
+										<td id="orderNumber"><%=bean.getOrdernumber() %></td>
+										<td><%=bean.getMemberid() %></td>
+										<td><%=bean.getMembername() %></td>
+										<td><%=bean.getMembertel() %></td>
+										<td><div class="divAddress"><%=bean.getMemberaddress() %></div></td>
+										<td><%=bean.getPrice() %></td>
+										<td><div class="divMenuName"><%=bean.getMenuname() %></div></td>
+										<td><%=bean.getAmount() %></td>
+										<td><%=bean.getStorename() %></td>
+										<td><%=bean.getStoretel() %></td>
+										<td><%=bean.getOrdertime() %></td>
+										<td><%=bean.getState() %></td>
 									</tr>
 									<%
 										}
 									%>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- 페이지이동페이징 -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				
+				<!-- 페이지이동페이징 -->
 					<div class="col-lg-12">
 						<div id="pagerDiv"
 							style="width: 100%; margin: 0 auto; text-align: center;">
@@ -150,7 +151,7 @@ $(function(){
 											if (currentBlock > 1) {
 												if (currentPage != startPage) {
 										%>
-												<a href="/baegopangAdmin/jsp/menu.jsp?page=<%=startPage - 1%>">
+												<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp?page=<%=startPage - 1%>">
 													Previous
 												</a>
 										<%
@@ -162,7 +163,7 @@ $(function(){
 											}else {
 												if (currentPage != startPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/menu.jsp?page=<%=currentPage - 1%>">
+													<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp?page=<%=currentPage - 1%>">
 														Previous
 													</a>
 										<%
@@ -186,7 +187,7 @@ $(function(){
 							 					} else {
 							 			%> 
 							 					<li>
-							 						<a href="/baegopangAdmin/jsp/menu.jsp?page=<%=i%>">
+							 						<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp?page=<%=i%>">
 							 							<%=i %>
 													</a>
 												</li>
@@ -200,7 +201,7 @@ $(function(){
 											if (totalPage > endPage) {
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/menu.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -212,7 +213,7 @@ $(function(){
 											}else{
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/menu.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -228,14 +229,17 @@ $(function(){
 							</ul>
 						</div>
 					</div>
+				
+
+
+
+				</div>
+				<!-- /.container-fluid -->
 
 			</div>
-			<!-- /.container-fluid -->
+			<!-- /#page-wrapper -->
 
 		</div>
-		<!-- /#page-wrapper -->
-
-	</div>
-	<!-- /#wrapper -->
+		<!-- /#wrapper -->
 </body>
 </html>

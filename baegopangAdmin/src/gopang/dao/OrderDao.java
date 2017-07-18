@@ -40,11 +40,11 @@ public class OrderDao {
 		}
 	}
 	
-	public int getOrderTotalRow() {
+	public int getOrderTotalRow(HashMap<String, Object> map) {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSession.selectOne("getOrderTotalRow");
+			return sqlSession.selectOne("getOrderTotalRow", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;

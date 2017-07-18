@@ -8,9 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM FOODORDER
 	</select>
 	
-	<select id="getOrderTotalRow" resultType="java.lang.Integer">
+	<select id="getOrderTotalRow" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT COUNT(ORDERNUMBER)
 		FROM FOODORDER
+		WHERE STATE = #{state}
 	</select>
 	
 	<select id="searchOrder" parameterType="java.util.HashMap" resultType="order">
@@ -19,7 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 		(SELECT ROW_NUMBER() OVER(ORDER BY ORDERNUMBER DESC) RM, ORDERNUMBER, MEMBERID, MEMBERNAME, MEMBERTEL, MEMBERADDRESS, PRICE, 
 					ORDERINFO, MENUNAME, AMOUNT, STORENAME, STOREADDRESS, STORETEL, ORDERTIME, STATE, HIT
-		FROM FOODORDER)
+		FROM FOODORDER
+		WHERE STATE = #{state}
+		)
 		WHERE RM BETWEEN #{start} AND #{end}
 		ORDER BY ORDERNUMBER
 	</select>
