@@ -27,7 +27,6 @@
 	master.approvalRequestMaster(bean);
 	store.deleteUnselectedStore(storename);
 	
-	
 	response.sendRedirect("/baegopangAdmin/jsp/masterInRequest.jsp");
 	
 %>

@@ -24,9 +24,9 @@
 		String brandNo = request.getParameter("brandNo");
 		String brandName = request.getParameter("brandName");
 		String brandImg = request.getParameter("brandImg");
-
+		int maxNo = 0;
 		// GitHub을 사용하기 때문에 경로를 바꿔줘야함.
-		String pathUpload = "C:\\test\\";
+		String pathUpload = "C:\\Users\\sist7-22\\git\\BaegopangAdmin\\baegopangAdmin\\WebContent\\img\\brandLogo\\";
 		BrandBean bean = new BrandBean();
 		String job=request.getParameter("job");
 		try {
@@ -39,15 +39,17 @@
 				for (FileItem file : list) {
 					String name = file.getFieldName();
 					if (name.equals("brandNo")) {
-						int maxNo = brand.selectAllBrandNo(file.getString("UTF-8").charAt(0));
+						maxNo = brand.selectAllBrandNo(file.getString("UTF-8").charAt(0));
 						bean.setBrandno(String.valueOf(++maxNo));
 					}
 					if (name.equals("brandName")) {
 						bean.setBrandname(file.getString("UTF-8"));
 					}
-					if (!file.isFormField()&& file.getName().length()!=0) {						
+					if (!file.isFormField()&& file.getName().length()!=0) {
+						File newFile = new File(pathUpload + String.valueOf(maxNo));
 						File f = new File(pathUpload + file.getName());
-						bean.setPicture(file.getName());
+						f.renameTo(newFile);
+						bean.setPicture("/img/brandLogo/"+file.getName());
 						file.write(f);
 					}
 				}//for
@@ -56,7 +58,7 @@
 			e.printStackTrace();
 		}
 			
-		//brand.insertBrand(bean);
+		brand.insertBrand(bean);
 		response.sendRedirect("/baegopangAdmin/jsp/brand.jsp");
 		
 	%>
