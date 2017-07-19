@@ -26,66 +26,6 @@
 
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
-
-		<!-- 메시지창 -->
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-envelope"></i>
-				<b class="caret"></b>
-			</a>
-			
-			<ul class="dropdown-menu message-dropdown">
-				<!-- 메시지 body -->
-				<li class="message-preview">
-					<a href="#">
-						<div class="media">
-							<span class="pull-left"> 
-								<img class="media-object" src="http://placehold.it/50x50" alt="">
-							</span>
-							<div class="media-body">
-								<h5 class="media-heading">
-									<strong>네네치킨-역삼점 사장</strong>
-								</h5>
-								<p class="small text-muted">
-									<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
-								</p>
-								<p>데헷 잘지내요 관리자님 ?</p>
-							</div>
-						</div>
-					</a>
-				</li>
-				<!-- 메시지창 footer -->
-				<li class="message-footer">
-					<a href="#">새로운 메시지 더 보기</a>
-				</li>
-			</ul>
-		</li>
-
-		<!-- 알람창 -->
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i>
-				<b class="caret"></b>
-			</a>
-				
-			<ul class="dropdown-menu alert-dropdown">
-				<!-- 알림 body -->
-				<li>
-					<a href="#">Alert Name 
-						<span class="label label-default">Alert Badge</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">Alert Name 
-						<span class="label label-primary">Alert Badge</span>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">더 보기</a>
-				</li>
-			</ul>
-		</li>
-
 		<!-- 내정보창 -->
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -94,7 +34,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="#">
+					<a href="/baegopangAdmin/jsp/logout.jsp">
 						<i class="fa fa-fw fa-power-off"></i> 로그아웃
 					</a>
 				</li>

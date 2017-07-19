@@ -82,5 +82,18 @@ public class MasterAskAdminDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	public int askCount(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectOne("askCount");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 }

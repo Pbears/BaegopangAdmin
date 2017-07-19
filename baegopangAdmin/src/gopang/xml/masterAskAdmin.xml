@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchMasterAskAdmin" parameterType="java.util.HashMap" resultType="masterAskAdmin">
 		SELECT RM, NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
 		FROM
-		(SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RM, NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
+		(SELECT ROW_NUMBER() OVER(ORDER BY REGDATE DESC) RM, NO, MASTERINFO, MASTERID, ADMININFO, ADMINID, REGDATE, HIT, TITLE
 		FROM MASTERASKADMIN)
 		WHERE RM BETWEEN #{start} AND #{end}
 		ORDER BY REGDATE DESC
@@ -29,4 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ADMINID = 'admin'
 		WHERE no=#{no}
 	</update>
+	
+	<select id="askCount" resultType="java.lang.Integer">
+		SELECT COUNT(HIT)
+		FROM MASTERASKADMIN
+		WHERE HIT = 0
+	</select>
+	
 </mapper>
