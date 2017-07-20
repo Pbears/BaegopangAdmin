@@ -15,8 +15,7 @@
 <title>배고팡 관리자</title>
 <link href="/baegopangAdmin/css/bootstrap.min.css" rel="stylesheet">
 <link href="/baegopangAdmin/css/sb-admin.css" rel="stylesheet">
-<link href="/baegopangAdmin/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
+<link href="/baegopangAdmin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script src="/baegopangAdmin/js/jquery.js"></script>
 <script src="/baegopangAdmin/js/bootstrap.min.js"></script>
 </head>

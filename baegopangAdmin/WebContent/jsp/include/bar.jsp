@@ -51,9 +51,8 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class="fa fa-fw fa-bar-chart-o"></i>
-					Charts
+				<a href="/baegopangAdmin/jsp/chart.jsp">
+					<i class="fa fa-fw fa-bar-chart-o"></i> Charts
 				</a>
 			</li>
 			<li>
