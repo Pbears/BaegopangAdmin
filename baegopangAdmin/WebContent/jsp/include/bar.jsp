@@ -74,7 +74,12 @@
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/masterInRequest.jsp">
-							<i class="fa fa-fw fa-table"></i> MasterRequest
+							<i class="fa fa-fw fa-table"></i> MasterInsertRequest
+						</a>
+					</li>
+					<li>
+						<a href="/baegopangAdmin/jsp/masterDrRequest.jsp">
+							<i class="fa fa-fw fa-table"></i> MasterDropRequest
 						</a>
 					</li>
 					<li>

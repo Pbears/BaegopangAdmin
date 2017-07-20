@@ -61,4 +61,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE ID=#{id}
 	</delete>
 	
+	<select id="selectMasterDropRequest" parameterType="java.util.HashMap"
+		resultType="master">
+		SELECT RM, ID, PW, NAME, ADDRESS, TEL, TO_CHAR(BIRTH,'YY/MM/DD')BIRTH,
+		NVL(STORENAME,'-') STORENAME
+		FROM
+		(SELECT ROW_NUMBER() OVER(ORDER BY ID DESC) RM, ID, PW, NAME, ADDRESS, TEL, BIRTH, STORENAME
+		FROM REQUESTDROP)
+		WHERE RM BETWEEN #{start} AND #{end}
+		ORDER BY ID
+	</select>
+	
+	<select id="getRequestMasterDropTotalRow" resultType="java.lang.Integer">
+		SELECT
+		COUNT(ID)
+		FROM REQUESTDROP
+	</select>
+	
+	<delete id="masterDropRequestApproval" parameterType="java.lang.String">
+		DELETE FROM REQUESTDROP
+		WHERE ID=#{id}
+	</delete>
+	
 </mapper>

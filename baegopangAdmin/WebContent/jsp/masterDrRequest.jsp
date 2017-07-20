@@ -37,32 +37,11 @@ table{
 </style>
 <script>
 $(function(){
-	$("tr.requestTr").hide();
-	$("button.btn-primary").click(function(){
-		var id = $(this).parent().parent().prev().find('.tdId').text()
-		var pw = $(this).parent().parent().prev().find('.tdPw').text()
-		var name = $(this).parent().parent().prev().find('.tdName').text()
-		var address = $(this).parent().parent().prev().find('.tdAddress').text()
-		var tel = $(this).parent().parent().prev().find('.tdTel').text()
-		var birth = $(this).parent().parent().prev().find('.tdBirth').text()
-		var storename = $(this).parent().prev().children().val();
-		
-		var result = confirm('승인할 정보가 맞습니까?\n\n'+'   id : '+id+'\n   pw : '+pw+'\n   name : '+name
-				+'\n   address : '+address+'\n   tel : '+tel+'\n   birth : '+birth+'\n   storename : '+storename);
-		if(result) { 
-			location.href="/baegopangAdmin/jsp/masterRequest/insert.jsp?id="+id+
-					"&pw="+pw+"&name="+name+"&address="+address+"&tel="+tel+"&birth="+birth+"&storename="+storename;
-		}
-		
-	});
-	$("button.btn-danger").click(function(){
+	$("button.approvalBtn").click(function(){
 		var result = confirm('정말 삭제하시겠습니까?');
 		if(result) { 
-			location.href="/baegopangAdmin/jsp/masterRequest/delete.jsp?id="+$(this).attr("id");
+			location.href="/baegopangAdmin/jsp/masterDropRequest/drop.jsp?id="+$(this).attr("id");
 		}
-	});
-	$("tr.ttr").click(function(){
-		$(this).next().toggle(500);
 	});
 })
 </script>
@@ -71,11 +50,9 @@ $(function(){
 		String id = (String) session.getAttribute("id");
 		List<MasterBean> list = null;
 		MasterDao master = new MasterDao();
-		StoreDao store = new StoreDao();
-		List<String> unSelectedStore = store.selectAllUnSelectedStoreName();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int pageScale = 8;
-		int totalRow = master.getRequestMasterTotalRow();
+		int totalRow = master.getRequestMasterDropTotalRow();
 
 		int currentPage = 0;
 		try {
@@ -96,7 +73,7 @@ $(function(){
 		map.put("start", start);
 		map.put("end", end);
 
-		list = master.searchRequestMaster(map);
+		list = master.selectMasterDropRequest(map);
 	%>
 	<div id="wrapper">
 		<jsp:include page="/jsp/include/bar.jsp" />
@@ -109,7 +86,7 @@ $(function(){
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							MasterInRequest <small>환영합니다 <%=id%>님
+							MasterDrRequest <small>환영합니다 <%=id%>님
 							</small>
 						</h1>
 					</div>
@@ -126,11 +103,12 @@ $(function(){
 										<td class="headTd" width="10%">아이디</td>
 										<td class="headTd" width="10%">비밀번호</td>
 										<td class="headTd" width="5%">이름</td>
-										<td class="headTd" width="40%">주소</td>
+										<td class="headTd" width="33%">주소</td>
 										<td class="headTd" width="10%">전화번호</td>
-										<td class="headTd" width="5%">생년월일</td>
+										<td class="headTd" width="8%">생년월일</td>
 										<td class="headTd" width="15%">음식점이름</td>
 										<td class="headTd" width="5%">포인트</td>
+										<td class="headTd" width="4%">승인</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -138,33 +116,16 @@ $(function(){
 										for (int i = 0; i < list.size(); i++) {
 											MasterBean bean = list.get(i);
 									%>
-									<tr class="ttr">
-										<td class="tdId"><%=bean.getId()%></td>
-										<td class="tdPw"><%=bean.getPw() %></td>
-										<td class="tdName"><%=bean.getName()%></td>
-										<td class="tdAddress"><%=bean.getAddress()%></td>
-										<td class="tdTel"><%=bean.getTel()%></td>
-										<td class="tdBirth"><%=bean.getBirth()%></td>
-										<td class="tdStoreName"><%=bean.getStorename()%></td>
-										<td class="tdPoint"><%=bean.getPoint()%></td>
-									</tr>
-									<tr class="requestTr">
-										<td colspan="4">
-											<select class="form-control">
-												<option value="empty" selected="selected">선택하세요</option>
-												<%
-													for(int j=0 ; j < unSelectedStore.size() ; j++){
-														%>
-														<option value="<%=unSelectedStore.get(j) %>"><%=unSelectedStore.get(j) %></option>
-														<%
-													}
-												%>
-											</select>
-										</td>
-										<td colspan="3">
-											<button type="button" class="btn btn-sm btn-primary">승인</button>
-											<button type="button" class="btn btn-sm btn-danger" id="<%=bean.getId()%>">거절</button>	
-										</td>
+									<tr>
+										<td><%=bean.getId()%></td>
+										<td><%=bean.getPw() %></td>
+										<td><%=bean.getName()%></td>
+										<td><%=bean.getAddress()%></td>
+										<td><%=bean.getTel()%></td>
+										<td><%=bean.getBirth()%></td>
+										<td><%=bean.getStorename()%></td>
+										<td><%=bean.getPoint()%></td>
+										<td><button type="button" class="btn btn-sm btn-primary approvalBtn" id="<%=bean.getId()%>">승인</button></td>
 									</tr>
 									<%
 										}
@@ -185,7 +146,7 @@ $(function(){
 											if (currentBlock > 1) {
 												if (currentPage != startPage) {
 										%>
-												<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=startPage - 1%>">
+												<a href="/baegopangAdmin/jsp/masterDrRequest.jsp?page=<%=startPage - 1%>">
 													Previous
 												</a>
 										<%
@@ -197,7 +158,7 @@ $(function(){
 											}else {
 												if (currentPage != startPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=currentPage - 1%>">
+													<a href="/baegopangAdmin/jsp/masterDrRequest.jsp?page=<%=currentPage - 1%>">
 														Previous
 													</a>
 										<%
@@ -221,7 +182,7 @@ $(function(){
 							 					} else {
 							 			%> 
 							 					<li>
-							 						<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=i%>">
+							 						<a href="/baegopangAdmin/jsp/masterDrRequest.jsp?page=<%=i%>">
 							 							<%=i %>
 													</a>
 												</li>
@@ -235,7 +196,7 @@ $(function(){
 											if (totalPage > endPage) {
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/masterDrRequest.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%
@@ -247,7 +208,7 @@ $(function(){
 											}else{
 												if (currentPage != endPage) {
 										%>
-													<a href="/baegopangAdmin/jsp/masterInRequest.jsp?page=<%=currentPage + 1%>">
+													<a href="/baegopangAdmin/jsp/masterDrRequest.jsp?page=<%=currentPage + 1%>">
 														Next
 													</a>
 										<%

@@ -133,5 +133,45 @@ public class MasterDao {
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	public List<MasterBean> selectMasterDropRequest(HashMap<String, Object> map){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("selectMasterDropRequest", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public int getRequestMasterDropTotalRow() {
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectOne("getRequestMasterDropTotalRow");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public void masterDropRequestApproval(String id){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			sqlSession.delete("masterDropRequestApproval", id);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 
 }

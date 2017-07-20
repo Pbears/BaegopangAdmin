@@ -31,14 +31,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 					사용 -->
 				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
 				
-				<!-- <property name="url" value="jdbc:oracle:thin:@babyseaninstance.c6levu9qrvwi.us-east-1.rds.amazonaws.com:1521:orcl"/>
+				<property name="url" value="jdbc:oracle:thin:@babyseaninstance.c6levu9qrvwi.us-east-1.rds.amazonaws.com:1521:orcl"/>
 				<property name="username" value="babysean" />
-				<property name="password" value="12341234" /> -->
+				<property name="password" value="12341234" />
 					
 					
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+				<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
 				<property name="username" value="hoon" />
-				<property name="password" value="1234" />
+				<property name="password" value="1234" /> -->
 			</dataSource>
 			<!-- Connection conn=ds.getConnection(); -->
 		</environment>
