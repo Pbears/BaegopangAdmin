@@ -94,19 +94,8 @@ $(function(){
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> 날씨</h3>
-                            </div>
-                            <div class="panel-body">
-                               
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- 최근 배달건 상태 -->
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> 배송중인 주문건</h3>
