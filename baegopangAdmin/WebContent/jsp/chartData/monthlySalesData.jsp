@@ -1,11 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="gopang.bean.ChartBean"%>
 <%@page import="gopang.dao.ChartDao"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.util.HashMap"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
@@ -28,7 +28,7 @@
 	//현재페이지의 목록데이터
 	out.println(jsonArray);
 	PrintWriter pw = response.getWriter();
-	pw.print(jsonArray);
+	pw.print(jsonArray.toString());
 	pw.flush();
 	pw.close();
 %>
