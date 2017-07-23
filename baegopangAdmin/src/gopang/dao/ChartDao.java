@@ -42,4 +42,30 @@ public class ChartDao {
 		}
 	}
 	
+	public List<ChartBean> weeklySales(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("weeklySales");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public List<ChartBean> genderSales(){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSession.selectList("genderSales");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
 }

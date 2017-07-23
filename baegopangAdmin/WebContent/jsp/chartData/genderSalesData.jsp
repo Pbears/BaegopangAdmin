@@ -15,13 +15,13 @@
 	JSONArray jsonArray = new JSONArray();
 
 	ChartDao chart = new ChartDao();
-	List<ChartBean> list = chart.monthlySales();
+	List<ChartBean> gender = chart.genderSales();
 
-	for (int i = 0; i < list.size(); i++) {
-		ChartBean bean = list.get(i);
+	for (int i = 0; i < gender.size(); i++) {
+		ChartBean bean = gender.get(i);
 		jsonData = new JSONObject();
-		jsonData.put("year", bean.getOrderday());
-		jsonData.put("value", bean.getPrice());
+		jsonData.put("gender", bean.getGender());
+		jsonData.put("value", Integer.parseInt(bean.getAmount()));
 		jsonArray.add(jsonData);
 	}
 

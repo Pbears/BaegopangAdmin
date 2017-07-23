@@ -4,11 +4,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gopang.xml.chart">
 	<select id="monthlySales" resultType="chart">
-		SELECT ORDERDAY, SUM(PRICE) PRICE
+		SELECT ORDERDAY, SUM(PRICE)
+		PRICE
 		FROM
 		(SELECT SUBSTR(ORDERDAY,0,4)ORDERDAY, PRICE
 		FROM ORDERDATA)
 		GROUP BY ORDERDAY
 		ORDER BY ORDERDAY
+	</select>
+
+	<select id="weeklySales" resultType="chart">
+		SELECT WEEKDAY, PRICE
+		FROM
+		(SELECT DISTINCT WEEKDAY, SUM(PRICE) OVER(PARTITION BY WEEKNUMBER)
+		PRICE,
+		WEEKNUMBER
+		FROM ORDERDATA)
+		ORDER BY WEEKNUMBER
+	</select>
+
+	<select id="genderSales" resultType="chart">
+		SELECT GENDER, SUM(AMOUNT) AMOUNT
+		FROM ORDERDATA
+		GROUP BY GENDER
 	</select>
 </mapper>
