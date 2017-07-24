@@ -45,92 +45,92 @@
 	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav side-nav">
-			<li class="active">
+			<li>
 				<a href="/baegopangAdmin/jsp/home.jsp">
-					<i class="fa fa-fw fa-dashboard"></i> Dashboard
+					<i class="fa fa-fw fa-dashboard"></i> 홈
 				</a>
 			</li>
 			<li>
 				<a href="/baegopangAdmin/jsp/chart.jsp">
-					<i class="fa fa-fw fa-bar-chart-o"></i> Charts
+					<i class="fa fa-fw fa-bar-chart-o"></i> 그래프
 				</a>
 			</li>
 			<li>
 				<a href="#" data-toggle="collapse" data-target="#demo">
-					<i class="fa fa-fw fa-table"></i> Table 
+					<i class="fa fa-fw fa-table"></i> 테이블 관리 
 					<i class="fa fa-fw fa-caret-down"></i>
 				</a>
 				<ul id="demo" class="collapse">
 					<li>
 						<a href="/baegopangAdmin/jsp/brand.jsp">
-							<i class="fa fa-fw fa-table"></i> Brand
+							<i class="fa fa-fw fa-table"></i> 브랜드
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/master.jsp">
-							<i class="fa fa-fw fa-table"></i> Master
+							<i class="fa fa-fw fa-table"></i> 사장
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/masterInRequest.jsp">
-							<i class="fa fa-fw fa-table"></i> MasterInsertRequest
+							<i class="fa fa-fw fa-table"></i> 가입요청
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/masterDrRequest.jsp">
-							<i class="fa fa-fw fa-table"></i> MasterDropRequest
+							<i class="fa fa-fw fa-table"></i> 탈퇴요청
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/member.jsp">
-							<i class="fa fa-fw fa-table"></i> Member
+							<i class="fa fa-fw fa-table"></i> 사용자
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/menu.jsp">
-							<i class="fa fa-fw fa-table"></i> Menu
+							<i class="fa fa-fw fa-table"></i> 메뉴
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/orderComplete.jsp">
-							<i class="fa fa-fw fa-table"></i> OrderComplete
+							<i class="fa fa-fw fa-table"></i> 주문배달완료
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/orderConfirmWait.jsp">
-							<i class="fa fa-fw fa-table"></i> OrderConfirmWait
+							<i class="fa fa-fw fa-table"></i> 주문승인대기
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/orderConfirmComplete.jsp">
-							<i class="fa fa-fw fa-table"></i> OrderConfirmComplete
+							<i class="fa fa-fw fa-table"></i> 주문배달중
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/orderConfirmNegative.jsp">
-							<i class="fa fa-fw fa-table"></i> OrderConfirmNegative
+							<i class="fa fa-fw fa-table"></i> 주문승인거절
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/store.jsp">
-							<i class="fa fa-fw fa-table"></i> Store
+							<i class="fa fa-fw fa-table"></i> 음식점
 						</a>
 					</li>
 					<li>
 						<a href="/baegopangAdmin/jsp/unSelectedStore.jsp">
-							<i class="fa fa-fw fa-table"></i> UnSelected Store
+							<i class="fa fa-fw fa-table"></i> 미선택음식점
 						</a>
 					</li>
 				</ul>
 			</li>
 			<li>
             	<a href="/baegopangAdmin/jsp/notice.jsp">
-            		<i class="fa fa-fw fa-edit"></i> Notice
+            		<i class="fa fa-fw fa-edit"></i> 공지사항
             	</a>
             </li>
             <li>
 				<a href="/baegopangAdmin/jsp/masterAskAdmin.jsp">
-					<i class="fa fa-fw fa-edit"></i> Question & Answer
+					<i class="fa fa-fw fa-edit"></i> 문의
 				</a>
 			</li>
 		</ul>
