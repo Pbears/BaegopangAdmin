@@ -82,7 +82,7 @@ table{
 
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Member List</h2>
+						<h2>사용자 List</h2>
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
@@ -184,18 +184,6 @@ table{
 													</a>
 										<%
 												} else {
-										%>
-													<a href="#">Next</a>
-										<%
-												}
-											}else{
-												if (currentPage != endPage) {
-										%>
-													<a href="/baegopangAdmin/jsp/member.jsp?page=<%=currentPage + 1%>">
-														Next
-													</a>
-										<%
-												}else{
 										%>
 													<a href="#">Next</a>
 										<%
