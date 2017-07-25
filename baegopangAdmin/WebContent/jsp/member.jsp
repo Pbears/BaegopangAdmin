@@ -34,13 +34,6 @@ table{
 	font-size: small;
 }
 </style>
-<script>
-$(function(){
-	$("button.memberDeleteBtn").click(function(){
-		location.href="/baegopangAdmin/jsp/member/memberDelete.jsp?id="+$(this).attr("id");
-	});
-});
-</script>
 <body>
 	<%
 		String id = (String) session.getAttribute("id");
@@ -94,14 +87,13 @@ $(function(){
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<td class="headTd" width="10%">아이디</td>
+										<td class="headTd" width="15%">아이디</td>
 										<td class="headTd" width="10%">이름</td>
-										<td class="headTd" width="30%">주소</td>
+										<td class="headTd" width="35%">주소</td>
 										<td class="headTd" width="10%">성별</td>
 										<td class="headTd" width="10%">전화번호</td>
 										<td class="headTd" width="10%">생년월일</td>
 										<td class="headTd" width="10%">팡</td>
-										<td class="headTd" width="10%">상태</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -117,7 +109,6 @@ $(function(){
 										<td><%=bean.getTel()%></td>
 										<td><%=bean.getBirth()%></td>
 										<td><%=bean.getPang()%></td>
-										<td><button type="button" class="btn btn-sm btn-danger memberDeleteBtn" id="<%=bean.getId()%>">삭제</button></td>
 									</tr>
 									<%
 										}
